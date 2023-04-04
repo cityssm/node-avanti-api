@@ -1,5 +1,9 @@
 # Avanti API for Node
 
+[![npm (scoped)](https://img.shields.io/npm/v/@cityssm/avanti-api)](https://www.npmjs.com/package/@cityssm/avanti-api)
+[![Codacy Badge](https://app.codacy.com/project/badge/Grade/e0afb710da074164b3597febe9014a08)](https://app.codacy.com/gh/cityssm/node-avanti-api/dashboard?utm_source=gh&utm_medium=referral&utm_content=&utm_campaign=Badge_grade)
+[![Maintainability](https://api.codeclimate.com/v1/badges/fbc4a515303a0cdae005/maintainability)](https://codeclimate.com/github/cityssm/node-avanti-api/maintainability)
+
 A wrapper around the [Avanti API](https://avanti.stoplight.io/docs/avanti-api).
 
 **Note:**
