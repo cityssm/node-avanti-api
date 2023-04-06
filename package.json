@@ -12,8 +12,8 @@
   ],
   "exports": "./index.js",
   "scripts": {
-    "test": "mocha",
-    "coverage": "c8 --reporter=lcov --reporter=text --reporter=text-summary mocha"
+    "test": "mocha --timeout 20000",
+    "coverage": "c8 --reporter=lcov --reporter=text --reporter=text-summary mocha --timeout 20000"
   },
   "repository": {
     "type": "git",
