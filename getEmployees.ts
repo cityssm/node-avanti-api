@@ -22,12 +22,12 @@ export interface GetEmployees_Request {
 }
 
 export interface GetEmployees_Response {
-  employees?: Employee[]
+  employees?: GetEmployees_Employee[]
   total?: number
   index?: number
 }
 
-export interface Employee {
+export interface GetEmployees_Employee {
   empNo?: string
   givenName?: string
   surname?: string
