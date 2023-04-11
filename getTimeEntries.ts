@@ -199,6 +199,13 @@ export interface GetTimeEntries_TimeEntry {
   breaks?: string
 }
 
+/**
+ * Endpoint: /v1/TimeManagement/{viewId}/{templateId}
+ * @param viewId 
+ * @param templateId 
+ * @param parameters 
+ * @returns 
+ */
 export async function getTimeEntries(
   viewId: string,
   templateId: string,

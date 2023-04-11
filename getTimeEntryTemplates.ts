@@ -115,6 +115,11 @@ export interface GetTimeEntryTemplates_TimeEntryTemplate {
   }[]
 }
 
+/**
+ * Endpoint: /v1/TimeManagement/Templates
+ * @param parameters
+ * @returns 
+ */
 export async function getTimeEntryTemplates(
   parameters: GetTimeEntryTemplates_Request
 ): Promise<GetTimeEntryTemplates_TimeEntryTemplate[]> {

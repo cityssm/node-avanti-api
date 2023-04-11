@@ -24,7 +24,7 @@ async function refreshAccessToken() {
     return _accessToken;
 }
 export async function callApi(apiEndpoint, apiOptions) {
-    let access_token = _accessToken === null || _accessToken === void 0 ? void 0 : _accessToken.access_token;
+    let access_token = _accessToken?.access_token;
     if (!access_token ||
         _accessTokenTimeMillis + _accessToken.expires_in <= Date.now()) {
         const accessTokenResponse = await refreshAccessToken();

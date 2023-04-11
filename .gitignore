@@ -6,7 +6,3 @@ sandworm/
 test/config.d.ts
 test/config.js
 test/config.ts
-
-test/ssm.d.ts
-test/ssm.js
-test/ssm.ts

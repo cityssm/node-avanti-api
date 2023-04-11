@@ -32,4 +32,16 @@ describe('node-avanti-api', () => {
         console.log(report);
         assert.ok(report.length > 0);
     });
+    it('Calls API directly', async () => {
+        const response = await avanti.callApi('/v1/Employees', {
+            method: 'post',
+            bodyParameters: {
+                skip: 0,
+                take: 5,
+                sortDirection: 1
+            }
+        });
+        console.log(response);
+        assert.ok(Object.hasOwn(response, 'employees'));
+    });
 });

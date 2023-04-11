@@ -3,11 +3,35 @@ import fetch, { type RequestInit } from 'node-fetch'
 import { objectToUrlSearchParameters } from './utilities.js'
 
 export interface Configuration {
+  /**
+   * Commonly the Self-Service Portal PLUS '-api'
+   * ex. https://myavanti.ca/avtesting-api
+   */
   base_api_url: string
+
+  /**
+   * Client ID
+   */
   client_id: string
+
+  /**
+   * Client password
+   */
   client_secret: string
+
+  /**
+   * Employee user name
+   */
   username: string
+
+  /**
+   * Employee password
+   */
   password: string
+
+  /**
+   * Company database name
+   */
   company: string
 }
 
@@ -25,6 +49,10 @@ let _apiConfiguration: Configuration
 let _accessTokenTimeMillis = 0
 let _accessToken: AccessTokenResponse
 
+/**
+ * 
+ * @param config The necessary credentials to use the API
+ */
 export function setConfiguration(config: Configuration): void {
   _apiConfiguration = config
 }
@@ -70,6 +98,12 @@ type ApiOptions =
       bodyParameters?: object
     }
 
+/**
+ * Requests an API endpoint excluded from the included functions.
+ * @param apiEndpoint ex. '/v1/Employees'
+ * @param apiOptions 
+ * @returns 
+ */
 export async function callApi(
   apiEndpoint: string,
   apiOptions: ApiOptions

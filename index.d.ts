@@ -1,5 +1,5 @@
-export { setConfiguration } from './apiCall.js';
-export { getEmployees } from './getEmployees.js';
-export { getTimeEntries } from './getTimeEntries.js';
-export { getTimeEntryTemplates } from './getTimeEntryTemplates.js';
+export { setConfiguration, callApi, type Configuration } from './apiCall.js';
+export { getEmployees, type GetEmployees_Request } from './getEmployees.js';
+export { getTimeEntries, type GetTimeEntries_Request } from './getTimeEntries.js';
+export { getTimeEntryTemplates, type GetTimeEntryTemplates_Request } from './getTimeEntryTemplates.js';
 export { getReport } from './getReport.js';

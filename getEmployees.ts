@@ -38,6 +38,11 @@ export interface GetEmployees_Employee {
   email?: string
 }
 
+/**
+ * Endpoint: /v1/Employees
+ * @param parameters 
+ * @returns 
+ */
 export async function getEmployees(
   parameters: GetEmployees_Request
 ): Promise<GetEmployees_Response> {
