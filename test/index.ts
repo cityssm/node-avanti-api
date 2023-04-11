@@ -23,7 +23,7 @@ describe('node-avanti-api', () => {
     const timeEntries = await avanti.getTimeEntries(
       config.timeEntry_viewId,
       config.timeEntry_templateId,
-      {  empNo: config.timeEntry_empNo, date: '2020-01-01' }
+      { empNo: config.timeEntry_empNo, date: '2020-01-01' }
     )
     console.log(timeEntries)
     assert.ok(timeEntries.length > 0)

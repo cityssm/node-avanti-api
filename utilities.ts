@@ -1,7 +1,3 @@
-export interface BasicObject {
-  [key: string]: string | number | boolean
-}
-
 export function objectToUrlSearchParameters(
   object: Record<string, string | number | boolean>
 ): URLSearchParams {

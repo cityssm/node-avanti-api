@@ -1,8 +1,24 @@
-import type { AccessTokenResponse, Configuration } from './types.js'
-
 import fetch, { type RequestInit } from 'node-fetch'
 
-import { BasicObject, objectToUrlSearchParameters } from './utilities.js'
+import { objectToUrlSearchParameters } from './utilities.js'
+
+export interface Configuration {
+  base_api_url: string
+  client_id: string
+  client_secret: string
+  username: string
+  password: string
+  company: string
+}
+
+interface AccessTokenResponse {
+  access_token: string
+  expires_in: number
+  token_type: string
+  scope: string
+  auth_state: number
+  company: string
+}
 
 let _apiConfiguration: Configuration
 
@@ -14,7 +30,6 @@ export function setConfiguration(config: Configuration): void {
 }
 
 async function refreshAccessToken(): Promise<AccessTokenResponse> {
-
   _accessTokenTimeMillis = Date.now()
 
   const requestObject = Object.assign(
@@ -26,35 +41,45 @@ async function refreshAccessToken(): Promise<AccessTokenResponse> {
   )
 
   const request = objectToUrlSearchParameters(
-    requestObject as unknown as BasicObject
+    requestObject as unknown as Record<string, string>
   )
 
-  const response = await fetch(_apiConfiguration.base_api_url + '/connect/token', {
-    method: 'post',
-    headers: {
-      'Content-Type': 'application/x-www-form-urlencoded'
-    },
-    body: request
-  })
+  const response = await fetch(
+    _apiConfiguration.base_api_url + '/connect/token',
+    {
+      method: 'post',
+      headers: {
+        'Content-Type': 'application/x-www-form-urlencoded'
+      },
+      body: request
+    }
+  )
 
-  _accessToken = await response.json() as AccessTokenResponse
+  _accessToken = (await response.json()) as AccessTokenResponse
 
   return _accessToken
 }
 
-type ApiOptions = {
-  method: 'get'
-  getParameters?: Record<string, string | number | boolean>
-} | {
-  method: 'post'
-  bodyParameters?: object
-}
+type ApiOptions =
+  | {
+      method: 'get'
+      getParameters?: Record<string, string | number | boolean>
+    }
+  | {
+      method: 'post'
+      bodyParameters?: object
+    }
 
-export async function callApi (apiEndpoint: string, apiOptions: ApiOptions): Promise<unknown> {
-
+export async function callApi(
+  apiEndpoint: string,
+  apiOptions: ApiOptions
+): Promise<unknown> {
   let access_token = _accessToken?.access_token
 
-  if (!access_token || _accessTokenTimeMillis + _accessToken.expires_in <= Date.now()) {
+  if (
+    !access_token ||
+    _accessTokenTimeMillis + _accessToken.expires_in <= Date.now()
+  ) {
     const accessTokenResponse = await refreshAccessToken()
     access_token = accessTokenResponse.access_token
   }

@@ -20,12 +20,13 @@ async function refreshAccessToken() {
         },
         body: request
     });
-    _accessToken = await response.json();
+    _accessToken = (await response.json());
     return _accessToken;
 }
 export async function callApi(apiEndpoint, apiOptions) {
     let access_token = _accessToken === null || _accessToken === void 0 ? void 0 : _accessToken.access_token;
-    if (!access_token || _accessTokenTimeMillis + _accessToken.expires_in <= Date.now()) {
+    if (!access_token ||
+        _accessTokenTimeMillis + _accessToken.expires_in <= Date.now()) {
         const accessTokenResponse = await refreshAccessToken();
         access_token = accessTokenResponse.access_token;
     }
