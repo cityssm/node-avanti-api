@@ -1,4 +1,4 @@
-export { setConfiguration, callApi, type Configuration } from './apiCall.js'
+export { setConfiguration, callApi, type Configuration, type ApiResponse } from './apiCall.js'
 
 export { getEmployees, type GetEmployees_Request } from './getEmployees.js'
 
