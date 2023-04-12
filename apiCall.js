@@ -1,3 +1,4 @@
+import 'core-js/actual/object/index.js';
 import fetch from 'node-fetch';
 import { objectToUrlSearchParameters } from './utilities.js';
 let _apiConfiguration;
@@ -45,5 +46,32 @@ export async function callApi(apiEndpoint, apiOptions) {
         fetchOptions.headers['Content-Type'] = 'application/json';
     }
     const response = await fetch(requestUrl, fetchOptions);
-    return await response.json();
+    let parsingError;
+    try {
+        const json = await response.json();
+        if (typeof json === 'object' &&
+            (Object.hasOwn(json, 'status') || Object.hasOwn(json, 'instance'))) {
+            return {
+                success: false,
+                error: json
+            };
+        }
+        return {
+            success: true,
+            response: json
+        };
+    }
+    catch (error) {
+        parsingError = error;
+    }
+    return {
+        success: false,
+        error: {
+            title: 'callApi() error',
+            status: 600,
+            detail: parsingError ? parsingError.name : undefined,
+            error: parsingError,
+            instance: apiEndpoint
+        }
+    };
 }

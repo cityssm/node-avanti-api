@@ -1,4 +1,4 @@
-import { callApi } from './apiCall.js'
+import { callApi, type ApiResponse } from './apiCall.js'
 
 export interface GetTimeEntryTemplates_Request extends Record<string, string> {
   empNo?: string
@@ -118,13 +118,13 @@ export interface GetTimeEntryTemplates_TimeEntryTemplate {
 /**
  * Endpoint: /v1/TimeManagement/Templates
  * @param parameters
- * @returns 
+ * @returns
  */
 export async function getTimeEntryTemplates(
   parameters: GetTimeEntryTemplates_Request
-): Promise<GetTimeEntryTemplates_TimeEntryTemplate[]> {
+): Promise<ApiResponse<GetTimeEntryTemplates_TimeEntryTemplate[]>> {
   return (await callApi('/v1/TimeManagement/Templates', {
     method: 'get',
     getParameters: parameters
-  })) as GetTimeEntryTemplates_TimeEntryTemplate[]
+  })) as ApiResponse<GetTimeEntryTemplates_TimeEntryTemplate[]>
 }

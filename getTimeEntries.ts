@@ -1,4 +1,4 @@
-import { callApi } from './apiCall.js'
+import { callApi, type ApiResponse } from './apiCall.js'
 
 export interface GetTimeEntries_Request
   extends Record<string, string | number | boolean> {
@@ -201,18 +201,18 @@ export interface GetTimeEntries_TimeEntry {
 
 /**
  * Endpoint: /v1/TimeManagement/{viewId}/{templateId}
- * @param viewId 
- * @param templateId 
- * @param parameters 
- * @returns 
+ * @param viewId
+ * @param templateId
+ * @param parameters
+ * @returns
  */
 export async function getTimeEntries(
   viewId: string,
   templateId: string,
   parameters: GetTimeEntries_Request
-): Promise<GetTimeEntries_TimeEntry[]> {
+): Promise<ApiResponse<GetTimeEntries_TimeEntry[]>> {
   return (await callApi(`/v1/TimeManagement/${viewId}/${templateId}`, {
     method: 'get',
     getParameters: parameters
-  })) as GetTimeEntries_TimeEntry[]
+  })) as ApiResponse<GetTimeEntries_TimeEntry[]>
 }

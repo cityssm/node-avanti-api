@@ -1,3 +1,4 @@
+import { type ApiResponse } from './apiCall.js';
 export interface GetTimeEntries_Request extends Record<string, string | number | boolean> {
     before?: boolean;
     date: string;
@@ -194,4 +195,4 @@ export interface GetTimeEntries_TimeEntry {
     isPooled: boolean;
     breaks?: string;
 }
-export declare function getTimeEntries(viewId: string, templateId: string, parameters: GetTimeEntries_Request): Promise<GetTimeEntries_TimeEntry[]>;
+export declare function getTimeEntries(viewId: string, templateId: string, parameters: GetTimeEntries_Request): Promise<ApiResponse<GetTimeEntries_TimeEntry[]>>;

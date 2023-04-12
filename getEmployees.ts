@@ -1,4 +1,4 @@
-import { callApi } from './apiCall.js'
+import { callApi, type ApiResponse } from './apiCall.js'
 
 export interface GetEmployees_Request {
   skip?: number
@@ -45,7 +45,7 @@ export interface GetEmployees_Employee {
  */
 export async function getEmployees(
   parameters: GetEmployees_Request
-): Promise<GetEmployees_Response> {
+): Promise<ApiResponse<GetEmployees_Response>> {
   return await callApi('/v1/Employees', {
     method: 'post',
     bodyParameters: parameters

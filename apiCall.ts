@@ -1,3 +1,5 @@
+import 'core-js/actual/object/index.js'
+
 import fetch, { type RequestInit } from 'node-fetch'
 
 import { objectToUrlSearchParameters } from './utilities.js'
@@ -50,7 +52,7 @@ let _accessTokenTimeMillis = 0
 let _accessToken: AccessTokenResponse
 
 /**
- * 
+ *
  * @param config The necessary credentials to use the API
  */
 export function setConfiguration(config: Configuration): void {
@@ -98,16 +100,33 @@ type ApiOptions =
       bodyParameters?: object
     }
 
+export type ApiResponse<T> =
+  | {
+      success: true
+      response: T
+    }
+  | {
+      success: false
+      error: {
+        type?: string
+        title?: string
+        status?: number
+        detail?: string
+        instance?: string
+        error?: Error
+      }
+    }
+
 /**
  * Requests an API endpoint excluded from the included functions.
  * @param apiEndpoint ex. '/v1/Employees'
- * @param apiOptions 
- * @returns 
+ * @param apiOptions
+ * @returns
  */
 export async function callApi(
   apiEndpoint: string,
   apiOptions: ApiOptions
-): Promise<unknown> {
+): Promise<ApiResponse<unknown>> {
   let access_token = _accessToken?.access_token
 
   if (
@@ -137,6 +156,37 @@ export async function callApi(
   }
 
   const response = await fetch(requestUrl, fetchOptions)
+  let parsingError: Error
 
-  return await response.json()
+  try {
+    const json = await response.json()
+
+    if (
+      typeof json === 'object' &&
+      (Object.hasOwn(json, 'status') || Object.hasOwn(json, 'instance'))
+    ) {
+      return {
+        success: false,
+        error: json
+      }
+    }
+
+    return {
+      success: true,
+      response: json
+    }
+  } catch (error) {
+    parsingError = error
+  }
+
+  return {
+    success: false,
+    error: {
+      title: 'callApi() error',
+      status: 600,
+      detail: parsingError ? parsingError.name : undefined,
+      error: parsingError,
+      instance: apiEndpoint
+    }
+  }
 }

@@ -1,3 +1,4 @@
+import { type ApiResponse } from './apiCall.js';
 export interface GetEmployees_Request {
     skip?: number;
     take?: number;
@@ -33,4 +34,4 @@ export interface GetEmployees_Employee {
     active: boolean;
     email?: string;
 }
-export declare function getEmployees(parameters: GetEmployees_Request): Promise<GetEmployees_Response>;
+export declare function getEmployees(parameters: GetEmployees_Request): Promise<ApiResponse<GetEmployees_Response>>;

@@ -26,6 +26,7 @@
   },
   "homepage": "https://github.com/cityssm/node-avanti-api#readme",
   "devDependencies": {
+    "@types/core-js": "^2.5.5",
     "@types/mocha": "^10.0.1",
     "@types/node": "^18.15.11",
     "@typescript-eslint/eslint-plugin": "^5.58.0",
@@ -37,6 +38,7 @@
     "eslint-plugin-unicorn": "^46.0.0"
   },
   "dependencies": {
+    "core-js": "^3.30.0",
     "node-fetch": "^3.3.1"
   }
 }

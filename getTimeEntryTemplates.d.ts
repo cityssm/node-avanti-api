@@ -1,3 +1,4 @@
+import { type ApiResponse } from './apiCall.js';
 export interface GetTimeEntryTemplates_Request extends Record<string, string> {
     empNo?: string;
     viewId?: string;
@@ -111,4 +112,4 @@ export interface GetTimeEntryTemplates_TimeEntryTemplate {
         }[];
     }[];
 }
-export declare function getTimeEntryTemplates(parameters: GetTimeEntryTemplates_Request): Promise<GetTimeEntryTemplates_TimeEntryTemplate[]>;
+export declare function getTimeEntryTemplates(parameters: GetTimeEntryTemplates_Request): Promise<ApiResponse<GetTimeEntryTemplates_TimeEntryTemplate[]>>;
