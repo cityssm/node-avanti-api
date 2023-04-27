@@ -184,7 +184,7 @@ export interface GetEmployeeJobData_Response {
 
 /**
  * Endpoint: /v1/EmployeeJobData
- * @param parameters
+ * @param employeeNumber
  * @returns
  */
 export async function getEmployeeJobData(
