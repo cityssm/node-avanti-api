@@ -7,6 +7,7 @@ describe('node-avanti-api', () => {
     });
     it('Gets employees', async () => {
         const employees = await avanti.getEmployees({
+            locations: [config.employees_locationCode],
             skip: 0,
             take: 10,
             active: 1
@@ -14,6 +15,12 @@ describe('node-avanti-api', () => {
         console.log(employees);
         assert.ok(employees.success);
         assert.ok(employees.response.employees.length > 0);
+    });
+    it('Gets employee job data', async () => {
+        const jobData = await avanti.getEmployeeJobData(config.timeEntry_empNo);
+        console.log(jobData);
+        assert.ok(jobData.success);
+        assert.ok(Object.hasOwn(jobData.response, 'employeeJobInfo'));
     });
     it('Gets time entries', async () => {
         const timeEntries = await avanti.getTimeEntries(config.timeEntry_viewId, config.timeEntry_templateId, { empNo: config.timeEntry_empNo, date: '2020-01-01' });
@@ -38,14 +45,14 @@ describe('node-avanti-api', () => {
     });
     describe('callApi()', () => {
         it('Calls API directly successfully', async () => {
-            const response = (await avanti.callApi('/v1/Employees', {
+            const response = await avanti.callApi('/v1/Employees', {
                 method: 'post',
                 bodyParameters: {
                     skip: 0,
                     take: 5,
                     sortDirection: 1
                 }
-            }));
+            });
             console.log(response);
             assert.ok(response.success);
         });
