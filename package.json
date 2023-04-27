@@ -1,9 +1,9 @@
 {
   "name": "@cityssm/avanti-api",
-  "version": "0.2.2",
+  "version": "0.3.0",
   "type": "module",
   "engines": {
-    "node": "^12.20.0 || ^14.13.1 || >=16.0.0"
+    "node": "^14.13.1 || >=16.0.0"
   },
   "description": "A wrapper around the Avanti API.",
   "keywords": [
