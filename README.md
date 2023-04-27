@@ -7,8 +7,9 @@
 A wrapper around the [Avanti API](https://avanti.stoplight.io/docs/avanti-api).
 
 **Note:**
-At this time, this project focuses only on read-only endpoints and primarily on the
-[`api/v1/Reporter` endpoint](https://avanti.stoplight.io/docs/avanti-api/ed0485a9c98bb-get-report-data).
+At this time, this project focuses only on read-only endpoints, primarily on the
+[`api/v1/Reporter` endpoint](https://avanti.stoplight.io/docs/avanti-api/ed0485a9c98bb-get-report-data),
+and employee data related endpoints.
 
 ## Installation
 
