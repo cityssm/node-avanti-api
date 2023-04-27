@@ -9,7 +9,7 @@ export interface Configuration {
    * Commonly the Self-Service Portal PLUS '-api'
    * ex. https://myavanti.ca/avtesting-api
    */
-  base_api_url: string
+  base_api_url: `https://myavanti.ca/${string}-api`
 
   /**
    * Client ID
@@ -124,7 +124,7 @@ export type ApiResponse<T> =
  * @returns
  */
 export async function callApi(
-  apiEndpoint: string,
+  apiEndpoint: `/v1/${string}`,
   apiOptions: ApiOptions
 ): Promise<ApiResponse<unknown>> {
   let access_token = _accessToken?.access_token

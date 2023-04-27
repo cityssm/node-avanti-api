@@ -1,6 +1,6 @@
 import 'core-js/actual/object/index.js';
 export interface Configuration {
-    base_api_url: string;
+    base_api_url: `https://myavanti.ca/${string}-api`;
     client_id: string;
     client_secret: string;
     username: string;
@@ -29,5 +29,5 @@ export type ApiResponse<T> = {
         error?: Error;
     };
 };
-export declare function callApi(apiEndpoint: string, apiOptions: ApiOptions): Promise<ApiResponse<unknown>>;
+export declare function callApi(apiEndpoint: `/v1/${string}`, apiOptions: ApiOptions): Promise<ApiResponse<unknown>>;
 export {};
