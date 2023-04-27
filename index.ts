@@ -1,4 +1,13 @@
-export { setConfiguration, callApi, type Configuration, type ApiResponse } from './apiCall.js'
+// SETUP
+
+export {
+  setConfiguration,
+  callApi,
+  type Configuration,
+  type ApiResponse
+} from './apiCall.js'
+
+// ENDPOINTS
 
 export { getEmployees, type GetEmployees_Request } from './getEmployees.js'
 
@@ -16,3 +25,7 @@ export {
 } from './getTimeEntryTemplates.js'
 
 export { getReport } from './getReport.js'
+
+// LOOKUPS
+
+export * as lookups from './lookups.js'

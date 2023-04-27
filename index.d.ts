@@ -5,3 +5,4 @@ export { getEmployeePersonalInfo } from './getEmployeePersonalInfo.js';
 export { getTimeEntries, type GetTimeEntries_Request } from './getTimeEntries.js';
 export { getTimeEntryTemplates, type GetTimeEntryTemplates_Request } from './getTimeEntryTemplates.js';
 export { getReport } from './getReport.js';
+export * as lookups from './lookups.js';

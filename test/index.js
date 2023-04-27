@@ -85,4 +85,7 @@ describe('node-avanti-api', () => {
             assert.ok(response.error.status < 700);
         });
     });
+    it('Looks up phone types', () => {
+        assert.ok(avanti.lookups.phoneTypes[1].isWork);
+    });
 });
