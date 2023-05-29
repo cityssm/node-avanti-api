@@ -20,8 +20,17 @@
     "plugin:@typescript-eslint/recommended"
   ],
   "rules": {
+    "import/order": [
+      "error",
+      {
+        "newlines-between": "always",
+        "alphabetize": {
+          "order": "asc",
+          "orderImportKind": "asc"
+        }
+      }
+    ],
     "node/no-missing-import": "off",
-    "unicorn/empty-brace-spaces": "off",
     "unicorn/filename-case": [
       "error",
       {

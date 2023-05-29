@@ -1,8 +1,8 @@
 import assert from 'node:assert'
 
-import * as config from './config.js'
-
 import * as avanti from '../index.js'
+
+import * as config from './config.js'
 
 describe('node-avanti-api', () => {
   before(() => {
