@@ -9,7 +9,7 @@ export interface Configuration {
    * Commonly the Self-Service Portal PLUS '-api'
    * ex. https://myavanti.ca/avtesting-api
    */
-  base_api_url: `https://myavanti.ca/${string}-api`
+  base_api_url: `https://myavanti.ca/${string}-api` | `https://stoplight.io/mocks/avanti/avanti-api/${string}`
 
   /**
    * Client ID
@@ -35,6 +35,8 @@ export interface Configuration {
    * Company database name
    */
   company: string
+
+  device_id?: string
 }
 
 interface AccessTokenResponse {

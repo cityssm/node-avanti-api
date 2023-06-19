@@ -1,11 +1,12 @@
 import 'core-js/actual/object/index.js';
 export interface Configuration {
-    base_api_url: `https://myavanti.ca/${string}-api`;
+    base_api_url: `https://myavanti.ca/${string}-api` | `https://stoplight.io/mocks/avanti/avanti-api/${string}`;
     client_id: string;
     client_secret: string;
     username: string;
     password: string;
     company: string;
+    device_id?: string;
 }
 export declare function setConfiguration(config: Configuration): void;
 type ApiOptions = {
