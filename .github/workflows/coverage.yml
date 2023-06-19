@@ -48,16 +48,16 @@ jobs:
         run: c8 --reporter=lcov --reporter=text --reporter=text-summary mocha --timeout 90000 --exit
 
       - name: Code Climate (After)
-        if: ${{ github.event_name != 'pull_request' && env.CC_TEST_REPORTER_ID != '' && matrix.node == 16 }}
+        if: ${{ always() && github.event_name != 'pull_request' && env.CC_TEST_REPORTER_ID != '' && matrix.node == 16 }}
         run: |
           ./codeclimate-test-reporter after-build -t lcov --exit-code $?
           
       - name: Codacy
-        if: ${{ github.event_name != 'pull_request' && env.CODACY_PROJECT_TOKEN != '' && matrix.node == 16 }}
+        if: ${{ always() && github.event_name != 'pull_request' && env.CODACY_PROJECT_TOKEN != '' && matrix.node == 16 }}
         run: bash <(curl -Ls https://coverage.codacy.com/get.sh) report -r ./coverage/lcov.info
 
       - name: Codecov
-        if: ${{ github.event_name != 'pull_request' && env.CODECOV_TOKEN != '' && matrix.node == 16 }}
+        if: ${{ always() && github.event_name != 'pull_request' && env.CODECOV_TOKEN != '' && matrix.node == 16 }}
         run: |
           curl -Os https://uploader.codecov.io/latest/linux/codecov
           chmod +x codecov
