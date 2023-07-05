@@ -20,7 +20,7 @@ describe('node-avanti-api', () => {
     console.log(employees)
 
     assert.ok(employees.success)
-    assert.ok(employees.response.employees.length > 0)
+    assert.ok(employees.response.employees!.length > 0)
   })
 
   it('Gets employee job data', async () => {
@@ -102,8 +102,8 @@ describe('node-avanti-api', () => {
       console.log(response)
 
       assert.strictEqual(response.success, false)
-      assert.ok(response.error.status >= 400)
-      assert.ok(response.error.status < 500)
+      assert.ok(response.error.status! >= 400)
+      assert.ok(response.error.status! < 500)
     })
 
     it('Calls API directly with a non-existent endpoint', async () => {
@@ -114,8 +114,8 @@ describe('node-avanti-api', () => {
       console.log(response)
 
       assert.strictEqual(response.success, false)
-      assert.ok(response.error.status >= 600)
-      assert.ok(response.error.status < 700)
+      assert.ok(response.error.status! >= 600)
+      assert.ok(response.error.status! < 700)
     })
   })
 

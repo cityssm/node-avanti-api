@@ -13,10 +13,10 @@ export interface GetEmployees_Request {
   locations?: string[]
   employmentStatus?: string[]
   positions?: string[]
-  sortDefinitions?: {
+  sortDefinitions?: Array<{
     field?: string
     dir?: string
-  }[]
+  }>
 }
 
 export interface GetEmployees_Response {
@@ -40,14 +40,14 @@ export interface GetEmployees_Employee {
 
 /**
  * Endpoint: /v1/Employees
- * @param parameters 
- * @returns 
+ * @param parameters
+ * @returns
  */
 export async function getEmployees(
   parameters: GetEmployees_Request
 ): Promise<ApiResponse<GetEmployees_Response>> {
-  return await callApi('/v1/Employees', {
+  return (await callApi('/v1/Employees', {
     method: 'post',
     bodyParameters: parameters
-  })
+  })) as ApiResponse<GetEmployees_Response>
 }

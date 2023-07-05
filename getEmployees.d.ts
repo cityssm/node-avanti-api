@@ -12,10 +12,10 @@ export interface GetEmployees_Request {
     locations?: string[];
     employmentStatus?: string[];
     positions?: string[];
-    sortDefinitions?: {
+    sortDefinitions?: Array<{
         field?: string;
         dir?: string;
-    }[];
+    }>;
 }
 export interface GetEmployees_Response {
     employees?: GetEmployees_Employee[];

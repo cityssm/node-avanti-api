@@ -11,7 +11,7 @@ async function refreshAccessToken() {
     _accessTokenTimeMillis = Date.now();
     const requestObject = Object.assign({
         grant_type: 'password',
-        device_id: 'node-avanti-api-' + Date.now()
+        device_id: 'node-avanti-api-' + Date.now().toString()
     }, _apiConfiguration);
     const request = objectToUrlSearchParameters(requestObject);
     const response = await fetch(_apiConfiguration.base_api_url + '/connect/token', {
@@ -25,15 +25,17 @@ async function refreshAccessToken() {
     return _accessToken;
 }
 export async function callApi(apiEndpoint, apiOptions) {
-    let access_token = _accessToken?.access_token;
-    if (!access_token ||
+    let access_token = _accessToken?.access_token ?? '';
+    if (access_token === '' ||
         _accessTokenTimeMillis + _accessToken.expires_in <= Date.now()) {
         const accessTokenResponse = await refreshAccessToken();
         access_token = accessTokenResponse.access_token;
     }
     let requestUrl = _apiConfiguration.base_api_url + apiEndpoint;
-    if (apiOptions.method === 'get' && apiOptions.getParameters) {
-        requestUrl += '?' + objectToUrlSearchParameters(apiOptions.getParameters);
+    if (apiOptions.method === 'get') {
+        requestUrl +=
+            '?' +
+                objectToUrlSearchParameters(apiOptions.getParameters ?? {}).toString();
     }
     const fetchOptions = {
         method: apiOptions.method,
@@ -41,14 +43,14 @@ export async function callApi(apiEndpoint, apiOptions) {
             Authorization: `Bearer ${access_token}`
         }
     };
-    if (apiOptions.method === 'post' && apiOptions.bodyParameters) {
+    if (apiOptions.method === 'post') {
         fetchOptions.body = JSON.stringify(apiOptions.bodyParameters);
         fetchOptions.headers['Content-Type'] = 'application/json';
     }
     const response = await fetch(requestUrl, fetchOptions);
     let parsingError;
     try {
-        const json = await response.json();
+        const json = (await response.json()) ?? {};
         if (typeof json === 'object' &&
             (Object.hasOwn(json, 'status') || Object.hasOwn(json, 'instance'))) {
             return {
@@ -69,7 +71,7 @@ export async function callApi(apiEndpoint, apiOptions) {
         error: {
             title: 'callApi() error',
             status: 600,
-            detail: parsingError ? parsingError.name : undefined,
+            detail: parsingError === undefined ? undefined : parsingError.name,
             error: parsingError,
             instance: apiEndpoint
         }

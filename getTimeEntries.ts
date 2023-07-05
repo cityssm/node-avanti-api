@@ -1,7 +1,7 @@
 import { callApi, type ApiResponse } from './apiCall.js'
 
 export interface GetTimeEntries_Request
-  extends Record<string, string | number | boolean> {
+  extends Record<string, string | number | boolean | undefined> {
   before?: boolean
   date: string
   empNo: string
@@ -49,12 +49,12 @@ export interface GetTimeEntries_TimeEntry {
   location?: string
   locationDescription?: string
   gl?: string
-  glSegment: {
+  glSegment: Array<{
     no: number
     value?: string
     description?: string
-  }[]
-  documents?: {
+  }>
+  documents?: Array<{
     documentId: number
     name?: string
     contentType?: string
@@ -71,7 +71,7 @@ export interface GetTimeEntries_TimeEntry {
     allowModify: boolean
     allowDelete: boolean
     allowView: boolean
-  }[]
+  }>
   deletedDocuments?: number[]
   userApprovalLevel: number
   allowInsert: boolean
@@ -124,13 +124,13 @@ export interface GetTimeEntries_TimeEntry {
   createdFromTimeCardId: number
   exceptionCodes: number
   exceptions?: string
-  timeCardOverrides?: {
+  timeCardOverrides?: Array<{
     apply: boolean
     type: 0 | 1
     ruleId?: string
     typeDescription?: string
     description?: string
-  }[]
+  }>
   timeCardEdits?: string
   modificationCodes: number
   scheduleFromTime?: number

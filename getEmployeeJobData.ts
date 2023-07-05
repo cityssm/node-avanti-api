@@ -157,7 +157,7 @@ export interface GetEmployeeJobData_Response {
     expiryDate?: string
     active: boolean
   }
-  employeePositions?: {
+  employeePositions?: Array<{
     position?: string
     positionName?: string
     active?: string
@@ -170,8 +170,8 @@ export interface GetEmployeeJobData_Response {
     positionRateLevel: number
     ytdUnits: number
     ytdUOM?: string
-  }[]
-  ytdLtdPositionUnits?: {
+  }>
+  ytdLtdPositionUnits?: Array<{
     position?: string
     positionName?: string
     rateLevel: number
@@ -179,7 +179,7 @@ export interface GetEmployeeJobData_Response {
     ytdUOM?: string
     ltdUnits: number
     ltdUOM: string
-  }[]
+  }>
 }
 
 /**

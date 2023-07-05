@@ -142,7 +142,7 @@ export interface GetEmployeePersonalInfo_Response {
     prevMiscAccum28: number;
     prevMiscAccum29: number;
     prevMiscAccum30: number;
-    roleAssignmentPermissions?: {
+    roleAssignmentPermissions?: Array<{
         roleId?: string;
         roleType: number;
         startDate: string;
@@ -154,7 +154,7 @@ export interface GetEmployeePersonalInfo_Response {
         deleteData: boolean;
         viewAmounts: boolean;
         createTime: boolean;
-    }[];
+    }>;
     employeeNameFormat: number;
     fullName?: string;
 }

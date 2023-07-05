@@ -82,6 +82,6 @@ export const vacationCodes = {
     3: 'Pay Out Accrued'
 };
 export const glTypes = {
-    'a': 'G/L Account',
-    'g': 'G/L Group'
+    a: 'G/L Account',
+    g: 'G/L Group'
 };

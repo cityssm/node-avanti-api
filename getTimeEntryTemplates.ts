@@ -1,6 +1,6 @@
 import { callApi, type ApiResponse } from './apiCall.js'
 
-export interface GetTimeEntryTemplates_Request extends Record<string, string> {
+export interface GetTimeEntryTemplates_Request extends Record<string, string | undefined> {
   empNo?: string
   viewId?: string
 }
@@ -13,7 +13,7 @@ export interface GetTimeEntryTemplates_TimeEntryTemplate {
   source: 0 | 1 | 2 | 3 | 4 | 5
   copyUnits: boolean
   doNotSpanDays: boolean
-  fields?: {
+  fields?: Array<{
     name?: string
     index: number
     key?: string
@@ -23,23 +23,23 @@ export interface GetTimeEntryTemplates_TimeEntryTemplate {
     isRequired: boolean
     sortOrder: number
     defaultValue: unknown
-    filters?: {
+    filters?: Array<{
       codes?: string
       value: unknown
-    }[]
+    }>
     header?: string
     headerFr?: string
     customHeader?: string
     customHeaderFr?: string
     customSetting?: string
     isDateField: boolean
-    validation?: {
+    validation?: Array<{
       validation?: string
       validationMessage?: string
       validationMessageFr?: string
-    }[]
-  }[]
-  filters?: {
+    }>
+  }>
+  filters?: Array<{
     table?: string
     id: number
     description?: string
@@ -51,8 +51,8 @@ export interface GetTimeEntryTemplates_TimeEntryTemplate {
     conjunction: 0 | 1
     openingBrackets: number
     closingBrackets: number
-  }[]
-  criteria?: {
+  }>
+  criteria?: Array<{
     table?: string
     id: number
     description?: string
@@ -64,14 +64,14 @@ export interface GetTimeEntryTemplates_TimeEntryTemplate {
     conjunction: number
     openingBrackets: number
     closingBrackets: number
-  }[]
-  validation?: {
+  }>
+  validation?: Array<{
     expression?: string
     type: 0 | 1 | 2 | 3
     onLoad: boolean
     message?: string
     messageFr?: string
-  }[]
+  }>
   userGroups?: string[]
   payGroupEntitlementValidation?: object
   entitlementThreshold?: object
@@ -87,7 +87,7 @@ export interface GetTimeEntryTemplates_TimeEntryTemplate {
   calendarDayDescExpression?: string
   allowPooling: boolean
   filterGlSegments: boolean
-  glSegmentFields?: {
+  glSegmentFields?: Array<{
     name?: string
     index: number
     key?: string
@@ -97,22 +97,22 @@ export interface GetTimeEntryTemplates_TimeEntryTemplate {
     isRequired: boolean
     sortOrder: number
     defaultValue?: unknown
-    filters?: {
+    filters?: Array<{
       codes?: string
       value: unknown
-    }[]
+    }>
     header?: string
     headerFr?: string
     customHeader?: string
     customHeaderFr?: string
     customSetting?: string
     isDateField: boolean
-    validation?: {
+    validation?: Array<{
       validation?: string
       validationMessage?: string
       validationMessageFr?: string
-    }[]
-  }[]
+    }>
+  }>
 }
 
 /**

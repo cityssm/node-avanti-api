@@ -95,6 +95,6 @@ export const vacationCodes = {
 }
 
 export const glTypes = {
-  'a': 'G/L Account',
-  'g': 'G/L Group'
+  a: 'G/L Account',
+  g: 'G/L Group'
 }

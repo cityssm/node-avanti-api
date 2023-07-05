@@ -1,3 +1,5 @@
+/* eslint-disable @typescript-eslint/indent */
+
 import 'core-js/actual/object/index.js'
 
 import fetch, { type RequestInit } from 'node-fetch'
@@ -9,7 +11,9 @@ export interface Configuration {
    * Commonly the Self-Service Portal PLUS '-api'
    * ex. https://myavanti.ca/avtesting-api
    */
-  base_api_url: `https://myavanti.ca/${string}-api` | `https://stoplight.io/mocks/avanti/avanti-api/${string}`
+  base_api_url:
+    | `https://myavanti.ca/${string}-api`
+    | `https://stoplight.io/mocks/avanti/avanti-api/${string}`
 
   /**
    * Client ID
@@ -67,7 +71,7 @@ async function refreshAccessToken(): Promise<AccessTokenResponse> {
   const requestObject = Object.assign(
     {
       grant_type: 'password',
-      device_id: 'node-avanti-api-' + Date.now()
+      device_id: 'node-avanti-api-' + Date.now().toString()
     },
     _apiConfiguration
   )
@@ -95,7 +99,7 @@ async function refreshAccessToken(): Promise<AccessTokenResponse> {
 type ApiOptions =
   | {
       method: 'get'
-      getParameters?: Record<string, string | number | boolean>
+      getParameters?: Record<string, string | number | boolean | undefined>
     }
   | {
       method: 'post'
@@ -129,10 +133,11 @@ export async function callApi(
   apiEndpoint: `/v1/${string}`,
   apiOptions: ApiOptions
 ): Promise<ApiResponse<unknown>> {
-  let access_token = _accessToken?.access_token
+  // eslint-disable-next-line @typescript-eslint/naming-convention
+  let access_token = _accessToken?.access_token ?? ''
 
   if (
-    !access_token ||
+    access_token === '' ||
     _accessTokenTimeMillis + _accessToken.expires_in <= Date.now()
   ) {
     const accessTokenResponse = await refreshAccessToken()
@@ -141,8 +146,10 @@ export async function callApi(
 
   let requestUrl = _apiConfiguration.base_api_url + apiEndpoint
 
-  if (apiOptions.method === 'get' && apiOptions.getParameters) {
-    requestUrl += '?' + objectToUrlSearchParameters(apiOptions.getParameters)
+  if (apiOptions.method === 'get') {
+    requestUrl +=
+      '?' +
+      objectToUrlSearchParameters(apiOptions.getParameters ?? {}).toString()
   }
 
   const fetchOptions: RequestInit = {
@@ -152,16 +159,16 @@ export async function callApi(
     }
   }
 
-  if (apiOptions.method === 'post' && apiOptions.bodyParameters) {
+  if (apiOptions.method === 'post') {
     fetchOptions.body = JSON.stringify(apiOptions.bodyParameters)
-    fetchOptions.headers['Content-Type'] = 'application/json'
+    ;(fetchOptions.headers as HeadersInit)['Content-Type'] = 'application/json'
   }
 
   const response = await fetch(requestUrl, fetchOptions)
-  let parsingError: Error
+  let parsingError: Error | undefined
 
   try {
-    const json = await response.json()
+    const json = (await response.json()) ?? {}
 
     if (
       typeof json === 'object' &&
@@ -186,7 +193,7 @@ export async function callApi(
     error: {
       title: 'callApi() error',
       status: 600,
-      detail: parsingError ? parsingError.name : undefined,
+      detail: parsingError === undefined ? undefined : parsingError.name,
       error: parsingError,
       instance: apiEndpoint
     }

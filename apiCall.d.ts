@@ -11,7 +11,7 @@ export interface Configuration {
 export declare function setConfiguration(config: Configuration): void;
 type ApiOptions = {
     method: 'get';
-    getParameters?: Record<string, string | number | boolean>;
+    getParameters?: Record<string, string | number | boolean | undefined>;
 } | {
     method: 'post';
     bodyParameters?: object;
