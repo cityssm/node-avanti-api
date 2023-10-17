@@ -34,7 +34,7 @@ export class AvantiApi {
     const requestObject = Object.assign(
       {
         grant_type: 'password',
-        device_id: 'node-avanti-api-' + Date.now().toString()
+        device_id: `node-avanti-api-${Date.now().toString()}`
       },
       this.#apiConfiguration
     )
