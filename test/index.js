@@ -1,9 +1,10 @@
 import assert from 'node:assert';
-import * as avanti from '../index.js';
+import { AvantiApi, lookups as avantiLookups } from '../index.js';
 import * as config from './config.js';
 describe('node-avanti-api', () => {
+    let avanti;
     before(() => {
-        avanti.setConfiguration(config.config);
+        avanti = new AvantiApi(config.config);
     });
     it('Gets employees', async () => {
         const employees = await avanti.getEmployees({
@@ -86,6 +87,6 @@ describe('node-avanti-api', () => {
         });
     });
     it('Looks up phone types', () => {
-        assert.ok(avanti.lookups.phoneTypes[1].isWork);
+        assert.ok(avantiLookups.phoneTypes[1].isWork);
     });
 });

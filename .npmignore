@@ -3,7 +3,6 @@
 .nyc_output
 coverage
 node_modules
-sandworm
 test
 
 .codeclimate.yml
@@ -13,5 +12,4 @@ test
 .npmignore
 .prettierignore
 .prettierrc.json
-.snyk
 tsconfig.json

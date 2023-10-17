@@ -1,12 +1,17 @@
+// eslint-disable-next-line eslint-comments/disable-enable-pair
+/* eslint-disable @typescript-eslint/no-non-null-assertion */
+
 import assert from 'node:assert'
 
-import * as avanti from '../index.js'
+import { AvantiApi, lookups as avantiLookups } from '../index.js'
 
 import * as config from './config.js'
 
 describe('node-avanti-api', () => {
+  let avanti: AvantiApi
+
   before(() => {
-    avanti.setConfiguration(config.config)
+    avanti = new AvantiApi(config.config)
   })
 
   it('Gets employees', async () => {
@@ -120,6 +125,6 @@ describe('node-avanti-api', () => {
   })
 
   it('Looks up phone types', () => {
-    assert.ok(avanti.lookups.phoneTypes[1].isWork)
+    assert.ok(avantiLookups.phoneTypes[1].isWork)
   })
 })

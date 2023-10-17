@@ -11,4 +11,4 @@ export const employees_locationCode = '400';
 export const timeEntry_viewId = 'AvantiView7';
 export const timeEntry_templateId = 'SchedTemp';
 export const timeEntry_empNo = '000001005';
-export const reporter_reportId = "WageSample";
+export const reporter_reportId = 'WageSample';

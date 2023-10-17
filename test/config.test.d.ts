@@ -1,5 +1,5 @@
-import type { Configuration } from "../apiCall";
-export declare const config: Configuration;
+import type { AvantiApiConfiguration } from '../types.js';
+export declare const config: AvantiApiConfiguration;
 export declare const employees_locationCode = "400";
 export declare const timeEntry_viewId = "AvantiView7";
 export declare const timeEntry_templateId = "SchedTemp";

@@ -1,6 +1,9 @@
-import type { Configuration } from "../apiCall";
+// eslint-disable-next-line eslint-comments/disable-enable-pair
+/* eslint-disable @typescript-eslint/naming-convention */
 
-export const config: Configuration = {
+import type { AvantiApiConfiguration } from '../types.js'
+
+export const config: AvantiApiConfiguration = {
   base_api_url: 'https://stoplight.io/mocks/avanti/avanti-api/6075865',
   client_id: 'ASI123451',
   client_secret: '*****',
@@ -16,4 +19,4 @@ export const timeEntry_viewId = 'AvantiView7'
 export const timeEntry_templateId = 'SchedTemp'
 export const timeEntry_empNo = '000001005'
 
-export const reporter_reportId = "WageSample"
+export const reporter_reportId = 'WageSample'

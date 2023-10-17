@@ -26,20 +26,14 @@
   },
   "homepage": "https://github.com/cityssm/node-avanti-api#readme",
   "devDependencies": {
-    "@types/core-js": "^2.5.5",
-    "@types/mocha": "^10.0.1",
-    "@types/node": "^20.3.3",
-    "@typescript-eslint/eslint-plugin": "^5.61.0",
-    "@typescript-eslint/parser": "^5.61.0",
-    "eslint": "^8.44.0",
-    "eslint-config-standard-with-typescript": "^36.0.0",
-    "eslint-plugin-import": "^2.27.5",
-    "eslint-plugin-node": "^11.1.0",
-    "eslint-plugin-promise": "^6.1.1",
-    "eslint-plugin-unicorn": "^47.0.0"
+    "@types/core-js": "^2.5.6",
+    "@types/mocha": "^10.0.2",
+    "@types/node": "^20.8.6",
+    "eslint": "^8.51.0",
+    "eslint-config-cityssm": "^0.5.1"
   },
   "dependencies": {
-    "core-js": "^3.31.0",
-    "node-fetch": "^3.3.1"
+    "core-js": "^3.33.0",
+    "node-fetch": "^3.3.2"
   }
 }

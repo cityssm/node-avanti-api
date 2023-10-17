@@ -1,8 +1,14 @@
-export { setConfiguration, callApi, type Configuration, type ApiResponse } from './apiCall.js';
-export { getEmployees, type GetEmployees_Request } from './getEmployees.js';
-export { getEmployeeJobData } from './getEmployeeJobData.js';
-export { getEmployeePersonalInfo } from './getEmployeePersonalInfo.js';
-export { getTimeEntries, type GetTimeEntries_Request } from './getTimeEntries.js';
-export { getTimeEntryTemplates, type GetTimeEntryTemplates_Request } from './getTimeEntryTemplates.js';
-export { getReport } from './getReport.js';
+import 'core-js/actual/object/index.js';
+import type { AvantiApiConfiguration, AvantiApiOptions, AvantiApiResponse, GetEmployeeJobDataResponse, GetEmployeePersonalInfoResponse, GetEmployeesRequest, GetEmployeesResponse, GetTimeEntriesRequest, GetTimeEntriesTimeEntry, GetTimeEntryTemplatesRequest, GetTimeEntryTemplatesTimeEntryTemplate } from './types.js';
+export declare class AvantiApi {
+    #private;
+    constructor(configuration: AvantiApiConfiguration);
+    callApi(apiEndpoint: `/v1/${string}`, apiOptions: AvantiApiOptions): Promise<AvantiApiResponse<unknown>>;
+    getEmployees(parameters: GetEmployeesRequest): Promise<AvantiApiResponse<GetEmployeesResponse>>;
+    getEmployeeJobData(employeeNumber: string): Promise<AvantiApiResponse<GetEmployeeJobDataResponse>>;
+    getEmployeePersonalInfo(employeeNumber: string): Promise<AvantiApiResponse<GetEmployeePersonalInfoResponse>>;
+    getTimeEntries(viewId: string, templateId: string, parameters: GetTimeEntriesRequest): Promise<AvantiApiResponse<GetTimeEntriesTimeEntry[]>>;
+    getTimeEntryTemplates(parameters: GetTimeEntryTemplatesRequest): Promise<AvantiApiResponse<GetTimeEntryTemplatesTimeEntryTemplate[]>>;
+    getReport(reportId: string): Promise<AvantiApiResponse<object[]>>;
+}
 export * as lookups from './lookups.js';
