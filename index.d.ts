@@ -12,3 +12,4 @@ export declare class AvantiApi {
     getReport(reportId: string): Promise<AvantiApiResponse<object[]>>;
 }
 export * as lookups from './lookups.js';
+export type * as types from './types.js';

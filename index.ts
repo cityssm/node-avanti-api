@@ -229,3 +229,5 @@ export class AvantiApi {
 }
 
 export * as lookups from './lookups.js'
+
+export type * as types from './types.js'
