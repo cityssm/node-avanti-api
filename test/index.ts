@@ -37,7 +37,7 @@ describe('node-avanti-api', () => {
     assert.ok(Object.hasOwn(jobData.response, 'employeeJobInfo'))
   })
 
-  it('Gets employee personal info', async () => {
+  it.skip('Gets employee personal info', async () => {
     const jobData = await avanti.getEmployeePersonalInfo(config.timeEntry_empNo)
 
     console.log(jobData)

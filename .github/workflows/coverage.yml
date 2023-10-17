@@ -13,7 +13,6 @@ jobs:
         node: [ 14, 16, 18 ]
     env:
       CC_TEST_REPORTER_ID: ${{ secrets.CC_TEST_REPORTER_ID }}
-      CODACY_PROJECT_TOKEN: ${{ secrets.CODACY_PROJECT_TOKEN }}
       CODECOV_TOKEN: ${{ secrets.CODECOV_TOKEN }}
     name: Node ${{ matrix.node }}
     steps:
@@ -52,10 +51,6 @@ jobs:
         run: |
           ./codeclimate-test-reporter after-build -t lcov --exit-code $?
           
-      - name: Codacy
-        if: ${{ always() && github.event_name != 'pull_request' && env.CODACY_PROJECT_TOKEN != '' && matrix.node == 16 }}
-        run: bash <(curl -Ls https://coverage.codacy.com/get.sh) report -r ./coverage/lcov.info
-
       - name: Codecov
         if: ${{ always() && github.event_name != 'pull_request' && env.CODECOV_TOKEN != '' && matrix.node == 16 }}
         run: |

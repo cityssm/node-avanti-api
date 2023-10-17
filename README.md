@@ -4,7 +4,7 @@
 [![DeepSource](https://app.deepsource.com/gh/cityssm/node-avanti-api.svg/?label=active+issues&show_trend=true&token=HZ0BFvBA6JYP4qZAI5MNS6JL)](https://app.deepsource.com/gh/cityssm/node-avanti-api/)
 [![Maintainability](https://api.codeclimate.com/v1/badges/fbc4a515303a0cdae005/maintainability)](https://codeclimate.com/github/cityssm/node-avanti-api/maintainability)
 
-A wrapper around the [Avanti API](https://avanti.stoplight.io/docs/avanti-api).
+An unofficial wrapper around the [Avanti API](https://avanti.stoplight.io/docs/avanti-api).
 
 **Note:**
 At this time, this project focuses only on read-only endpoints, primarily on the

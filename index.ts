@@ -44,7 +44,7 @@ export class AvantiApi {
     )
 
     const response = await fetch(
-      this.#apiConfiguration.base_api_url + '/connect/token',
+      `${this.#apiConfiguration.base_api_url}/connect/token`,
       {
         method: 'post',
         headers: {

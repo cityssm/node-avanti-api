@@ -5,7 +5,7 @@
   "engines": {
     "node": "^14.13.1 || >=16.0.0"
   },
-  "description": "A wrapper around the Avanti API.",
+  "description": "An unofficial wrapper around the Avanti API.",
   "keywords": [
     "avanti",
     "payroll"

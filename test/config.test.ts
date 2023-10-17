@@ -4,7 +4,7 @@
 import type { AvantiApiConfiguration } from '../types.js'
 
 export const config: AvantiApiConfiguration = {
-  base_api_url: 'https://stoplight.io/mocks/avanti/avanti-api/6075865',
+  base_api_url: 'https://stoplight.io/mocks/avanti/avanti-api/180217',
   client_id: 'ASI123451',
   client_secret: '*****',
   username: 'apiuser',

@@ -15,7 +15,7 @@ export class AvantiApi {
             device_id: 'node-avanti-api-' + Date.now().toString()
         }, this.#apiConfiguration);
         const request = objectToUrlSearchParameters(requestObject);
-        const response = await fetch(this.#apiConfiguration.base_api_url + '/connect/token', {
+        const response = await fetch(`${this.#apiConfiguration.base_api_url}/connect/token`, {
             method: 'post',
             headers: {
                 'Content-Type': 'application/x-www-form-urlencoded'
