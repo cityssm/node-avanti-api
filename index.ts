@@ -1,5 +1,3 @@
-import 'core-js/actual/object/index.js'
-
 import fetch, { type RequestInit } from 'node-fetch'
 
 import type {
@@ -19,7 +17,7 @@ import type {
 import { objectToUrlSearchParameters } from './utilities.js'
 
 export class AvantiApi {
-  #apiConfiguration: AvantiApiConfiguration
+  readonly #apiConfiguration: AvantiApiConfiguration
 
   #accessTokenTimeMillis = 0
   #accessToken: AccessTokenResponse | undefined

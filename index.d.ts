@@ -1,4 +1,3 @@
-import 'core-js/actual/object/index.js';
 import type { AvantiApiConfiguration, AvantiApiOptions, AvantiApiResponse, GetEmployeeJobDataResponse, GetEmployeePersonalInfoResponse, GetEmployeesRequest, GetEmployeesResponse, GetTimeEntriesRequest, GetTimeEntriesTimeEntry, GetTimeEntryTemplatesRequest, GetTimeEntryTemplatesTimeEntryTemplate } from './types.js';
 export declare class AvantiApi {
     #private;
