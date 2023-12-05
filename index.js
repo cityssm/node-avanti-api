@@ -1,4 +1,3 @@
-import fetch from 'node-fetch';
 import { objectToUrlSearchParameters } from './utilities.js';
 export class AvantiApi {
     #apiConfiguration;

@@ -1,5 +1,3 @@
-import fetch, { type RequestInit } from 'node-fetch'
-
 import type {
   AccessTokenResponse,
   AvantiApiConfiguration,
