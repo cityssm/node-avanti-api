@@ -33,9 +33,7 @@ export class AvantiApi {
         }
         let requestUrl = this.#apiConfiguration.base_api_url + apiEndpoint;
         if (apiOptions.method === 'get') {
-            requestUrl +=
-                '?' +
-                    objectToUrlSearchParameters(apiOptions.getParameters ?? {}).toString();
+            requestUrl += `?${objectToUrlSearchParameters(apiOptions.getParameters ?? {}).toString()}`;
         }
         const fetchOptions = {
             method: apiOptions.method,
@@ -53,7 +51,8 @@ export class AvantiApi {
         try {
             const json = (await response.json()) ?? {};
             if (typeof json === 'object' &&
-                (Object.hasOwn(json, 'status') || Object.hasOwn(json, 'instance'))) {
+                (Object.hasOwn(json, 'status') ||
+                    Object.hasOwn(json, 'instance'))) {
                 return {
                     success: false,
                     error: json
