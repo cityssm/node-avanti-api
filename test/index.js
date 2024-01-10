@@ -1,3 +1,5 @@
+// eslint-disable-next-line eslint-comments/disable-enable-pair
+/* eslint-disable @typescript-eslint/no-non-null-assertion */
 import assert from 'node:assert';
 import { AvantiApi, lookups as avantiLookups } from '../index.js';
 import * as config from './config.js';

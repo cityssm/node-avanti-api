@@ -1,3 +1,5 @@
+// eslint-disable-next-line eslint-comments/disable-enable-pair
+/* eslint-disable @typescript-eslint/naming-convention */
 export const config = {
     base_api_url: 'https://stoplight.io/mocks/avanti/avanti-api/180217',
     client_id: 'ASI123451',

@@ -23,7 +23,14 @@ export class AvantiApi {
         this.#accessToken = (await response.json());
         return this.#accessToken;
     }
+    /**
+     * Requests an API endpoint excluded from the included functions.
+     * @param {string} apiEndpoint - ex. '/v1/Employees'
+     * @param {AvantiApiOptions} apiOptions - API Options
+     * @returns {Promise<AvantiApiResponse<unknown>>} API Response
+     */
     async callApi(apiEndpoint, apiOptions) {
+        // eslint-disable-next-line @typescript-eslint/naming-convention
         let access_token = this.#accessToken?.access_token ?? '';
         if (access_token === '' ||
             this.#accessTokenTimeMillis + (this.#accessToken?.expires_in ?? 0) <=
@@ -77,12 +84,24 @@ export class AvantiApi {
             }
         };
     }
+    /**
+     * List Employees:
+     * /v1/Employees
+     * @param {GetEmployeesRequest} parameters - Request parameters
+     * @returns {Promise<AvantiApiResponse<GetEmployeesResponse>>} See https://avanti.stoplight.io/docs/avanti-api/62932b8f232fb-list-employees
+     */
     async getEmployees(parameters) {
         return (await this.callApi('/v1/Employees', {
             method: 'post',
             bodyParameters: parameters
         }));
     }
+    /**
+     * Get Employee Job Data:
+     * /v1/EmployeeJobData
+     * @param {string} employeeNumber - Employee number
+     * @returns {Promise<AvantiApiResponse<GetEmployeeJobDataResponse>>} See https://avanti.stoplight.io/docs/avanti-api/a44b4af6f1abd-get-employee-job-data
+     */
     async getEmployeeJobData(employeeNumber) {
         return (await this.callApi('/v1/EmployeeJobData', {
             method: 'get',
@@ -91,6 +110,12 @@ export class AvantiApi {
             }
         }));
     }
+    /**
+     * Get Employee Personal Info:
+     * /v1/PersonalInfo
+     * @param {string} employeeNumber - Employee number
+     * @returns {Promise<AvantiApiResponse<GetEmployeePersonalInfoResponse>>} See https://avanti.stoplight.io/docs/avanti-api/f851b988b5cf6-get-employee-personal-info
+     */
     async getEmployeePersonalInfo(employeeNumber) {
         return (await this.callApi('/v1/PersonalInfo', {
             method: 'get',
@@ -99,18 +124,38 @@ export class AvantiApi {
             }
         }));
     }
+    /**
+     * List Time Entries:
+     * /v1/TimeManagement/{viewId}/{templateId}
+     * @param {string} viewId - View Id
+     * @param {string} templateId - Template Id
+     * @param {GetTimeEntriesRequest} parameters - Request parameters
+     * @returns {Promise<AvantiApiResponse<GetTimeEntriesTimeEntry[]>>} See https://avanti.stoplight.io/docs/avanti-api/4952dd2917595-list-time-entries
+     */
     async getTimeEntries(viewId, templateId, parameters) {
         return (await this.callApi(`/v1/TimeManagement/${viewId}/${templateId}`, {
             method: 'get',
             getParameters: parameters
         }));
     }
+    /**
+     * List Time Entry Templates:
+     * /v1/TimeManagement/Templates
+     * @param {GetTimeEntryTemplatesRequest} parameters - Request parameters
+     * @returns {Promise<AvantiApiResponse<GetTimeEntryTemplatesTimeEntryTemplate[]>>} See https://avanti.stoplight.io/docs/avanti-api/faa0ddb0eb18d-list-time-entry-templates
+     */
     async getTimeEntryTemplates(parameters) {
         return (await this.callApi('/v1/TimeManagement/Templates', {
             method: 'get',
             getParameters: parameters
         }));
     }
+    /**
+     * Get Report Data:
+     * /v1/Reporter/{reportId}
+     * @param {string} reportId - The ID of the report you would like to get the data for.
+     * @returns {Promise<AvantiApiResponse<object[]>>} See https://avanti.stoplight.io/docs/avanti-api/ed0485a9c98bb-get-report-data
+     */
     async getReport(reportId) {
         return (await this.callApi(`/v1/Reporter/${reportId}`, {
             method: 'get'

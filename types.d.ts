@@ -1,9 +1,28 @@
 export interface AvantiApiConfiguration {
+    /**
+     * Commonly the Self-Service Portal PLUS '-api'
+     * ex. https://myavanti.ca/avtesting-api
+     */
     base_api_url: `https://myavanti.ca/${string}-api` | `https://stoplight.io/mocks/avanti/avanti-api/${string}`;
+    /**
+     * Client ID
+     */
     client_id: string;
+    /**
+     * Client password
+     */
     client_secret: string;
+    /**
+     * Employee user name
+     */
     username: string;
+    /**
+     * Employee password
+     */
     password: string;
+    /**
+     * Company database name
+     */
     company: string;
     device_id?: string;
 }

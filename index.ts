@@ -136,7 +136,8 @@ export class AvantiApi {
   }
 
   /**
-   * List Employees: /v1/Employees
+   * List Employees:
+   * /v1/Employees
    * @param {GetEmployeesRequest} parameters - Request parameters
    * @returns {Promise<AvantiApiResponse<GetEmployeesResponse>>} See https://avanti.stoplight.io/docs/avanti-api/62932b8f232fb-list-employees
    */
@@ -150,7 +151,8 @@ export class AvantiApi {
   }
 
   /**
-   * Get Employee Job Data: /v1/EmployeeJobData
+   * Get Employee Job Data:
+   * /v1/EmployeeJobData
    * @param {string} employeeNumber - Employee number
    * @returns {Promise<AvantiApiResponse<GetEmployeeJobDataResponse>>} See https://avanti.stoplight.io/docs/avanti-api/a44b4af6f1abd-get-employee-job-data
    */
@@ -166,7 +168,8 @@ export class AvantiApi {
   }
 
   /**
-   * Get Employee Personal Info: /v1/PersonalInfo
+   * Get Employee Personal Info:
+   * /v1/PersonalInfo
    * @param {string} employeeNumber - Employee number
    * @returns {Promise<AvantiApiResponse<GetEmployeePersonalInfoResponse>>} See https://avanti.stoplight.io/docs/avanti-api/f851b988b5cf6-get-employee-personal-info
    */
@@ -182,7 +185,8 @@ export class AvantiApi {
   }
 
   /**
-   * List Time Entries: /v1/TimeManagement/{viewId}/{templateId}
+   * List Time Entries:
+   * /v1/TimeManagement/{viewId}/{templateId}
    * @param {string} viewId - View Id
    * @param {string} templateId - Template Id
    * @param {GetTimeEntriesRequest} parameters - Request parameters
@@ -200,7 +204,8 @@ export class AvantiApi {
   }
 
   /**
-   * List Time Entry Templates: /v1/TimeManagement/Templates
+   * List Time Entry Templates:
+   * /v1/TimeManagement/Templates
    * @param {GetTimeEntryTemplatesRequest} parameters - Request parameters
    * @returns {Promise<AvantiApiResponse<GetTimeEntryTemplatesTimeEntryTemplate[]>>} See https://avanti.stoplight.io/docs/avanti-api/faa0ddb0eb18d-list-time-entry-templates
    */
@@ -214,7 +219,8 @@ export class AvantiApi {
   }
 
   /**
-   * Get Report Data: /v1/Reporter/{reportId}
+   * Get Report Data:
+   * /v1/Reporter/{reportId}
    * @param {string} reportId - The ID of the report you would like to get the data for.
    * @returns {Promise<AvantiApiResponse<object[]>>} See https://avanti.stoplight.io/docs/avanti-api/ed0485a9c98bb-get-report-data
    */
