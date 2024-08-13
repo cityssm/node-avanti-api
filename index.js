@@ -1,5 +1,5 @@
 import { objectToUrlSearchParameters } from './utilities.js';
-const defaultLatestASSP = false;
+export const _defaultLatestASSP = false;
 export class AvantiApi {
     #apiConfiguration;
     #accessTokenTimeMillis = 0;
@@ -21,7 +21,7 @@ export class AvantiApi {
             company: this.#apiConfiguration.company
         });
         const request = objectToUrlSearchParameters(requestObject);
-        const accessTokenUrl = (this.#apiConfiguration.latestASSP ?? defaultLatestASSP)
+        const accessTokenUrl = (this.#apiConfiguration.latestASSP ?? _defaultLatestASSP)
             ? 'https://auth.myavanti.ca/connect/token'
             : `https://myavanti.ca/${this.#apiConfiguration.tenant}-api/connect/token`;
         const response = await fetch(accessTokenUrl, {
@@ -51,7 +51,7 @@ export class AvantiApi {
             const accessTokenResponse = await this.#refreshAccessToken();
             access_token = accessTokenResponse.access_token;
         }
-        let requestUrl = (this.#apiConfiguration.latestASSP ?? defaultLatestASSP)
+        let requestUrl = (this.#apiConfiguration.latestASSP ?? _defaultLatestASSP)
             ? `https://${this.#apiConfiguration.tenant}.myavanti.ca/API${apiEndpoint}`
             : `https://myavanti.ca/${this.#apiConfiguration.tenant}-api${apiEndpoint}`;
         console.log(`Request URL: ${requestUrl}`);

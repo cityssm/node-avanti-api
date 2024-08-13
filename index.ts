@@ -15,7 +15,7 @@ import type {
 } from './types.js'
 import { objectToUrlSearchParameters } from './utilities.js'
 
-const defaultLatestASSP = false
+export const _defaultLatestASSP = false
 
 export class AvantiApi {
   readonly #apiConfiguration: AvantiApiConfiguration
@@ -51,7 +51,7 @@ export class AvantiApi {
     )
 
     const accessTokenUrl =
-      (this.#apiConfiguration.latestASSP ?? defaultLatestASSP)
+      (this.#apiConfiguration.latestASSP ?? _defaultLatestASSP)
         ? 'https://auth.myavanti.ca/connect/token'
         : `https://myavanti.ca/${this.#apiConfiguration.tenant}-api/connect/token`
 
@@ -93,7 +93,7 @@ export class AvantiApi {
     }
 
     let requestUrl =
-      (this.#apiConfiguration.latestASSP ?? defaultLatestASSP)
+      (this.#apiConfiguration.latestASSP ?? _defaultLatestASSP)
         ? `https://${this.#apiConfiguration.tenant}.myavanti.ca/API${apiEndpoint}`
         : `https://myavanti.ca/${this.#apiConfiguration.tenant}-api${apiEndpoint}`
 

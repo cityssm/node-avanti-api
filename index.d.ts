@@ -1,4 +1,5 @@
 import type { AvantiApiConfiguration, AvantiApiOptions, AvantiApiResponse, GetEmployeeEarningCodesEarningCode, GetEmployeeJobDataResponse, GetEmployeePersonalInfoResponse, GetEmployeesRequest, GetEmployeesResponse, GetTimeEntriesRequest, GetTimeEntriesTimeEntry, GetTimeEntryTemplatesRequest, GetTimeEntryTemplatesTimeEntryTemplate } from './types.js';
+export declare const _defaultLatestASSP = false;
 export declare class AvantiApi {
     #private;
     constructor(configuration: AvantiApiConfiguration);
