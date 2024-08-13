@@ -31,6 +31,7 @@ import { AvantiApi } from '@cityssm/avanti-api'
 // Initialize the API
 const avanti = new AvantiApi({
   tenant: 'avtesting',
+  // latestASSP: false,
   client_id: '',
   client_secret: '',
   username: '',
@@ -44,3 +45,8 @@ const report = await avanti.getReport('CUSTOM_REPORT_ID')
 // Output the data
 console.log(report)
 ```
+
+If your company is on the
+[latest Avanti Self Service Portal (ASSP)](https://help.avanti.ca/support/solutions/articles/36000498186-faq#FAQ-Q:HowdoIknowifmycompanyalreadyhasthelatestASSP?),
+be sure to set `latestASSP` to `true`.
+The current default is `false`.
