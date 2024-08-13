@@ -25,6 +25,11 @@ for instructions on creating the needed credentials.
 
 Note that each endpoint needs to be properly initialized in Avanti as well.
 
+⭐ If your company is on the
+[latest Avanti Self Service Portal (ASSP)](https://help.avanti.ca/support/solutions/articles/36000498186-faq#FAQ-Q:HowdoIknowifmycompanyalreadyhasthelatestASSP?),
+be sure to set `latestASSP` to `true`.
+The current default is `false`, which will likely change in the `v1.0.0` release.
+
 ```javascript
 import { AvantiApi } from '@cityssm/avanti-api'
 
@@ -45,8 +50,3 @@ const report = await avanti.getReport('CUSTOM_REPORT_ID')
 // Output the data
 console.log(report)
 ```
-
-If your company is on the
-[latest Avanti Self Service Portal (ASSP)](https://help.avanti.ca/support/solutions/articles/36000498186-faq#FAQ-Q:HowdoIknowifmycompanyalreadyhasthelatestASSP?),
-be sure to set `latestASSP` to `true`.
-The current default is `false`.
