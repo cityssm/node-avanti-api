@@ -30,7 +30,7 @@ import { AvantiApi } from '@cityssm/avanti-api'
 
 // Initialize the API
 const avanti = new AvantiApi({
-  base_api_url: 'https://myavanti.ca/avtesting-api',
+  tenant: 'avtesting',
   client_id: '',
   client_secret: '',
   username: '',

@@ -1,9 +1,9 @@
 export interface AvantiApiConfiguration {
     /**
-     * Commonly the Self-Service Portal PLUS '-api'
-     * ex. https://myavanti.ca/avtesting-api
+     * https://[tenant].myavanti.ca/
      */
-    base_api_url: `https://myavanti.ca/${string}-api` | `https://stoplight.io/mocks/avanti/avanti-api/${string}`;
+    tenant: string;
+    latestASSP?: boolean;
     /**
      * Client ID
      */
@@ -89,6 +89,10 @@ export interface GetEmployeesEmployee {
     photoRevision?: number;
     active: boolean;
     email?: string;
+}
+export interface GetEmployeeEarningCodesEarningCode {
+    text?: string;
+    value?: string;
 }
 export interface GetEmployeeJobDataResponse {
     employeeJobInfo: {
@@ -433,7 +437,7 @@ export interface GetEmployeePersonalInfoResponse {
 export interface GetTimeEntriesRequest extends Record<string, string | number | boolean | undefined> {
     before?: boolean;
     date: string;
-    empNo: string;
+    empNo?: string;
     endDate?: string;
     id?: number;
     skip?: number;

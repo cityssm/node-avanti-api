@@ -1,12 +1,13 @@
-// eslint-disable-next-line eslint-comments/disable-enable-pair
+// eslint-disable-next-line @eslint-community/eslint-comments/disable-enable-pair
 /* eslint-disable @typescript-eslint/naming-convention */
 export const config = {
-    base_api_url: 'https://stoplight.io/mocks/avanti/avanti-api/180217',
+    tenant: 'avtesting',
     client_id: 'ASI123451',
     client_secret: '*****',
     username: 'apiuser',
     password: '*****',
     company: 'MyCompany',
+    // eslint-disable-next-line no-secrets/no-secrets
     device_id: 'AvantiAPIDocs-37a099ba-0987-4324-b21f-b58417a59676'
 };
 export const employees_locationCode = '400';

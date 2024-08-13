@@ -1,7 +1,6 @@
 .nyc_output/
 coverage/
 node_modules/
-sandworm/
 
 test/config.d.ts
 test/config.js

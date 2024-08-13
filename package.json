@@ -12,8 +12,8 @@
   ],
   "exports": "./index.js",
   "scripts": {
-    "test": "mocha --timeout 60000",
-    "coverage": "c8 --reporter=lcov --reporter=text --reporter=text-summary mocha --timeout 60000"
+    "test": "node --test",
+    "coverage": "c8 --reporter=lcov --reporter=text --reporter=text-summary node --test"
   },
   "repository": {
     "type": "git",
@@ -26,8 +26,8 @@
   },
   "homepage": "https://github.com/cityssm/node-avanti-api#readme",
   "devDependencies": {
-    "@types/mocha": "^10.0.6",
-    "@types/node": "^20.10.8",
-    "eslint-config-cityssm": "^1.4.0"
+    "@types/node": "^22.2.0",
+    "eslint-config-cityssm": "^6.0.0",
+    "prettier-config-cityssm": "^1.0.0"
   }
 }
