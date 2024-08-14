@@ -37,6 +37,9 @@ export class AvantiApi {
             body: request
         });
         this.#accessToken = (await response.json());
+        if ((this.#accessToken?.access_token ?? '') === '') {
+            debug('Error retrieving access token.');
+        }
         return this.#accessToken;
     }
     /**

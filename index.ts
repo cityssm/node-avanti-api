@@ -73,6 +73,10 @@ export class AvantiApi {
 
     this.#accessToken = (await response.json()) as AccessTokenResponse
 
+    if ((this.#accessToken?.access_token ?? '') === '') {
+      debug('Error retrieving access token.')
+    }
+
     return this.#accessToken
   }
 
