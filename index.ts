@@ -129,9 +129,12 @@ export class AvantiApi {
     }
 
     const response = await fetch(requestUrl, fetchOptions)
+    
+    // eslint-disable-next-line @typescript-eslint/init-declarations
     let parsingError: Error | undefined
 
     try {
+      // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
       const json = (await response.json()) ?? {}
 
       if (

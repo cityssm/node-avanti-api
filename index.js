@@ -76,8 +76,10 @@ export class AvantiApi {
                 'application/json';
         }
         const response = await fetch(requestUrl, fetchOptions);
+        // eslint-disable-next-line @typescript-eslint/init-declarations
         let parsingError;
         try {
+            // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
             const json = (await response.json()) ?? {};
             if (typeof json === 'object' &&
                 (Object.hasOwn(json, 'status') ||
