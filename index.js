@@ -1,4 +1,6 @@
+import Debug from 'debug';
 import { objectToUrlSearchParameters } from './utilities.js';
+const debug = Debug('avanti-api');
 export const _defaultLatestASSP = false;
 export class AvantiApi {
     #apiConfiguration;
@@ -24,6 +26,7 @@ export class AvantiApi {
         const accessTokenUrl = (this.#apiConfiguration.latestASSP ?? _defaultLatestASSP)
             ? 'https://auth.myavanti.ca/connect/token'
             : `https://myavanti.ca/${this.#apiConfiguration.tenant}-api/connect/token`;
+        debug(`Access token request: ${accessTokenUrl}`);
         const response = await fetch(accessTokenUrl, {
             method: 'post',
             headers: {
@@ -54,7 +57,7 @@ export class AvantiApi {
         let requestUrl = (this.#apiConfiguration.latestASSP ?? _defaultLatestASSP)
             ? `https://${this.#apiConfiguration.tenant}.myavanti.ca/API${apiEndpoint}`
             : `https://myavanti.ca/${this.#apiConfiguration.tenant}-api${apiEndpoint}`;
-        console.log(`Request URL: ${requestUrl}`);
+        debug(`API request: ${requestUrl}`);
         if (apiOptions.method === 'get') {
             requestUrl += `?${objectToUrlSearchParameters(apiOptions.getParameters ?? {}).toString()}`;
         }

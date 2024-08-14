@@ -12,7 +12,7 @@
   ],
   "exports": "./index.js",
   "scripts": {
-    "test": "node --test",
+    "test": "cross-env NODE_ENV=dev DEBUG=avanti-api node --test",
     "coverage": "c8 --reporter=lcov --reporter=text --reporter=text-summary node --test"
   },
   "repository": {
@@ -26,8 +26,12 @@
   },
   "homepage": "https://github.com/cityssm/node-avanti-api#readme",
   "devDependencies": {
+    "@types/debug": "^4.1.12",
     "@types/node": "^22.2.0",
     "eslint-config-cityssm": "^6.0.0",
     "prettier-config-cityssm": "^1.0.0"
+  },
+  "dependencies": {
+    "debug": "^4.3.6"
   }
 }
