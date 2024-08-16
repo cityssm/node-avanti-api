@@ -4,6 +4,7 @@ import type {
   AccessTokenResponse,
   AvantiApiConfiguration,
   AvantiApiEndpoint,
+  AvantiApiError,
   AvantiApiOptions,
   AvantiApiResponse,
   GetEmployeeEarningCodesEarningCode,
@@ -149,7 +150,7 @@ export class AvantiApi {
       ) {
         return {
           success: false,
-          error: json
+          error: json as AvantiApiError
         }
       }
 
@@ -158,7 +159,7 @@ export class AvantiApi {
         response: json
       }
     } catch (error) {
-      parsingError = error
+      parsingError = error as Error
     }
 
     return {

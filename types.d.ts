@@ -33,19 +33,20 @@ export type AvantiApiOptions = {
     method: 'post';
     bodyParameters?: object;
 };
+export interface AvantiApiError {
+    type?: string;
+    title?: string;
+    status?: number;
+    detail?: string;
+    instance?: string;
+    error?: Error;
+}
 export type AvantiApiResponse<T> = {
     success: true;
     response: T;
 } | {
     success: false;
-    error: {
-        type?: string;
-        title?: string;
-        status?: number;
-        detail?: string;
-        instance?: string;
-        error?: Error;
-    };
+    error: AvantiApiError;
 };
 export interface AccessTokenResponse {
     access_token: string;

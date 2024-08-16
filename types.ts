@@ -2,7 +2,6 @@
 /* eslint-disable @typescript-eslint/indent */
 
 export interface AvantiApiConfiguration {
-
   /**
    * https://[tenant].myavanti.ca/
    */
@@ -48,6 +47,15 @@ export type AvantiApiOptions =
       bodyParameters?: object
     }
 
+export interface AvantiApiError {
+  type?: string
+  title?: string
+  status?: number
+  detail?: string
+  instance?: string
+  error?: Error
+}
+
 export type AvantiApiResponse<T> =
   | {
       success: true
@@ -55,14 +63,7 @@ export type AvantiApiResponse<T> =
     }
   | {
       success: false
-      error: {
-        type?: string
-        title?: string
-        status?: number
-        detail?: string
-        instance?: string
-        error?: Error
-      }
+      error: AvantiApiError
     }
 
 export interface AccessTokenResponse {
