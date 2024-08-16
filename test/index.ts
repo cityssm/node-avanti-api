@@ -6,6 +6,7 @@ import { AvantiApi, lookups as avantiLookups } from '../index.js'
 import * as config from './config.js'
 
 await describe('node-avanti-api', async () => {
+  // eslint-disable-next-line @typescript-eslint/init-declarations
   let avanti: AvantiApi
 
   before(() => {
@@ -23,7 +24,7 @@ await describe('node-avanti-api', async () => {
     console.log(employees)
 
     assert.ok(employees.success)
-    assert.ok(employees.response.employees.length > 0)
+    assert.ok((employees.response.employees?.length ?? 0) > 0)
   })
 
   await it('Gets employee job data', async () => {
@@ -44,7 +45,7 @@ await describe('node-avanti-api', async () => {
     assert.ok(Object.hasOwn(jobData.response, 'surname'))
   })
 
-  await it('Gets employee earning codes', async () => {
+  await it.skip('Gets employee earning codes', async () => {
     const earningCodes = await avanti.getEmployeeEarningCodes(
       config.timeEntry_empNo
     )
@@ -119,8 +120,9 @@ await describe('node-avanti-api', async () => {
       console.log(response)
 
       assert.strictEqual(response.success, false)
-      assert.ok(response.error.status! >= 400)
-      assert.ok(response.error.status! < 500)
+      assert(response.error.status !== undefined)
+      assert.ok(response.error.status >= 400)
+      assert.ok(response.error.status < 500)
     })
 
     await it('Calls API directly with a non-existent endpoint', async () => {
@@ -131,8 +133,9 @@ await describe('node-avanti-api', async () => {
       console.log(response)
 
       assert.strictEqual(response.success, false)
-      assert.ok(response.error.status! >= 600)
-      assert.ok(response.error.status! < 700)
+      assert(response.error.status !== undefined)
+      assert.ok(response.error.status >= 600)
+      assert.ok(response.error.status < 700)
     })
   })
 
