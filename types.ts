@@ -74,6 +74,8 @@ export interface AccessTokenResponse {
   company: string
 }
 
+export type AvantiApiEndpoint = `/v${number}/${string}`
+
 /*
  * Get Employees
  */

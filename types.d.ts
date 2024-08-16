@@ -55,6 +55,7 @@ export interface AccessTokenResponse {
     auth_state: number;
     company: string;
 }
+export type AvantiApiEndpoint = `/v${number}/${string}`;
 export interface GetEmployeesRequest {
     skip?: number;
     take?: number;

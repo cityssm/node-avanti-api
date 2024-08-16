@@ -3,6 +3,7 @@ import Debug from 'debug'
 import type {
   AccessTokenResponse,
   AvantiApiConfiguration,
+  AvantiApiEndpoint,
   AvantiApiOptions,
   AvantiApiResponse,
   GetEmployeeEarningCodesEarningCode,
@@ -23,12 +24,24 @@ export const _defaultLatestASSP = false
 
 export class AvantiApi {
   readonly #apiConfiguration: AvantiApiConfiguration
+  readonly #accessTokenUrl: string
 
   #accessTokenTimeMillis = 0
   #accessToken: AccessTokenResponse | undefined
 
   constructor(configuration: AvantiApiConfiguration) {
     this.#apiConfiguration = configuration
+
+    this.#accessTokenUrl =
+      (this.#apiConfiguration.latestASSP ?? _defaultLatestASSP)
+        ? 'https://auth.myavanti.ca/connect/token'
+        : `https://myavanti.ca/${this.#apiConfiguration.tenant}-api/connect/token`
+  }
+
+  #getEndpointUrl(apiEndpoint: AvantiApiEndpoint): string {
+    return (this.#apiConfiguration.latestASSP ?? _defaultLatestASSP)
+      ? `https://${this.#apiConfiguration.tenant}.myavanti.ca/api${apiEndpoint}`
+      : `https://myavanti.ca/${this.#apiConfiguration.tenant}-api${apiEndpoint}`
   }
 
   async #refreshAccessToken(): Promise<AccessTokenResponse> {
@@ -54,14 +67,9 @@ export class AvantiApi {
       requestObject as unknown as Record<string, string>
     )
 
-    const accessTokenUrl =
-      (this.#apiConfiguration.latestASSP ?? _defaultLatestASSP)
-        ? 'https://auth.myavanti.ca/connect/token'
-        : `https://myavanti.ca/${this.#apiConfiguration.tenant}-api/connect/token`
+    debug(`Access token request: ${this.#accessTokenUrl}`)
 
-    debug(`Access token request: ${accessTokenUrl}`)
-
-    const response = await fetch(accessTokenUrl, {
+    const response = await fetch(this.#accessTokenUrl, {
       method: 'post',
       headers: {
         Accept: 'application/json',
@@ -87,7 +95,7 @@ export class AvantiApi {
    * @returns API Response
    */
   async callApi(
-    apiEndpoint: `/v1/${string}`,
+    apiEndpoint: AvantiApiEndpoint,
     apiOptions: AvantiApiOptions
   ): Promise<AvantiApiResponse<unknown>> {
     // eslint-disable-next-line @typescript-eslint/naming-convention
@@ -102,10 +110,7 @@ export class AvantiApi {
       access_token = accessTokenResponse.access_token
     }
 
-    let requestUrl =
-      (this.#apiConfiguration.latestASSP ?? _defaultLatestASSP)
-        ? `https://${this.#apiConfiguration.tenant}.myavanti.ca/API${apiEndpoint}`
-        : `https://myavanti.ca/${this.#apiConfiguration.tenant}-api${apiEndpoint}`
+    let requestUrl = this.#getEndpointUrl(apiEndpoint)
 
     debug(`API request: ${requestUrl}`)
 
@@ -129,7 +134,7 @@ export class AvantiApi {
     }
 
     const response = await fetch(requestUrl, fetchOptions)
-    
+
     // eslint-disable-next-line @typescript-eslint/init-declarations
     let parsingError: Error | undefined
 

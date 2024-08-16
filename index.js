@@ -4,10 +4,20 @@ const debug = Debug('avanti-api');
 export const _defaultLatestASSP = false;
 export class AvantiApi {
     #apiConfiguration;
+    #accessTokenUrl;
     #accessTokenTimeMillis = 0;
     #accessToken;
     constructor(configuration) {
         this.#apiConfiguration = configuration;
+        this.#accessTokenUrl =
+            (this.#apiConfiguration.latestASSP ?? _defaultLatestASSP)
+                ? 'https://auth.myavanti.ca/connect/token'
+                : `https://myavanti.ca/${this.#apiConfiguration.tenant}-api/connect/token`;
+    }
+    #getEndpointUrl(apiEndpoint) {
+        return (this.#apiConfiguration.latestASSP ?? _defaultLatestASSP)
+            ? `https://${this.#apiConfiguration.tenant}.myavanti.ca/api${apiEndpoint}`
+            : `https://myavanti.ca/${this.#apiConfiguration.tenant}-api${apiEndpoint}`;
     }
     async #refreshAccessToken() {
         this.#accessTokenTimeMillis = Date.now();
@@ -23,11 +33,8 @@ export class AvantiApi {
             company: this.#apiConfiguration.company
         });
         const request = objectToUrlSearchParameters(requestObject);
-        const accessTokenUrl = (this.#apiConfiguration.latestASSP ?? _defaultLatestASSP)
-            ? 'https://auth.myavanti.ca/connect/token'
-            : `https://myavanti.ca/${this.#apiConfiguration.tenant}-api/connect/token`;
-        debug(`Access token request: ${accessTokenUrl}`);
-        const response = await fetch(accessTokenUrl, {
+        debug(`Access token request: ${this.#accessTokenUrl}`);
+        const response = await fetch(this.#accessTokenUrl, {
             method: 'post',
             headers: {
                 Accept: 'application/json',
@@ -57,9 +64,7 @@ export class AvantiApi {
             const accessTokenResponse = await this.#refreshAccessToken();
             access_token = accessTokenResponse.access_token;
         }
-        let requestUrl = (this.#apiConfiguration.latestASSP ?? _defaultLatestASSP)
-            ? `https://${this.#apiConfiguration.tenant}.myavanti.ca/API${apiEndpoint}`
-            : `https://myavanti.ca/${this.#apiConfiguration.tenant}-api${apiEndpoint}`;
+        let requestUrl = this.#getEndpointUrl(apiEndpoint);
         debug(`API request: ${requestUrl}`);
         if (apiOptions.method === 'get') {
             requestUrl += `?${objectToUrlSearchParameters(apiOptions.getParameters ?? {}).toString()}`;

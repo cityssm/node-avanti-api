@@ -1,4 +1,4 @@
-import type { AvantiApiConfiguration, AvantiApiOptions, AvantiApiResponse, GetEmployeeEarningCodesEarningCode, GetEmployeeJobDataResponse, GetEmployeePersonalInfoResponse, GetEmployeesRequest, GetEmployeesResponse, GetTimeEntriesRequest, GetTimeEntriesTimeEntry, GetTimeEntryTemplatesRequest, GetTimeEntryTemplatesTimeEntryTemplate } from './types.js';
+import type { AvantiApiConfiguration, AvantiApiEndpoint, AvantiApiOptions, AvantiApiResponse, GetEmployeeEarningCodesEarningCode, GetEmployeeJobDataResponse, GetEmployeePersonalInfoResponse, GetEmployeesRequest, GetEmployeesResponse, GetTimeEntriesRequest, GetTimeEntriesTimeEntry, GetTimeEntryTemplatesRequest, GetTimeEntryTemplatesTimeEntryTemplate } from './types.js';
 export declare const _defaultLatestASSP = false;
 export declare class AvantiApi {
     #private;
@@ -9,7 +9,7 @@ export declare class AvantiApi {
      * @param apiOptions - API Options
      * @returns API Response
      */
-    callApi(apiEndpoint: `/v1/${string}`, apiOptions: AvantiApiOptions): Promise<AvantiApiResponse<unknown>>;
+    callApi(apiEndpoint: AvantiApiEndpoint, apiOptions: AvantiApiOptions): Promise<AvantiApiResponse<unknown>>;
     /**
      * List Employees:
      * /v1/Employees
