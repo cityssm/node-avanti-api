@@ -2,7 +2,6 @@
 
 [![npm (scoped)](https://img.shields.io/npm/v/@cityssm/avanti-api)](https://www.npmjs.com/package/@cityssm/avanti-api)
 [![DeepSource](https://app.deepsource.com/gh/cityssm/node-avanti-api.svg/?label=active+issues&show_trend=true&token=HZ0BFvBA6JYP4qZAI5MNS6JL)](https://app.deepsource.com/gh/cityssm/node-avanti-api/)
-[![Maintainability](https://api.codeclimate.com/v1/badges/fbc4a515303a0cdae005/maintainability)](https://codeclimate.com/github/cityssm/node-avanti-api/maintainability)
 
 An unofficial wrapper around the [Avanti API](https://avanti.stoplight.io/docs/avanti-api).
 
