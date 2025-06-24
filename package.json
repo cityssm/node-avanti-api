@@ -27,11 +27,11 @@
   "homepage": "https://github.com/cityssm/node-avanti-api#readme",
   "devDependencies": {
     "@types/debug": "^4.1.12",
-    "@types/node": "^22.3.0",
-    "eslint-config-cityssm": "^6.0.0",
+    "@types/node": "^24.0.3",
+    "eslint-config-cityssm": "^24.1.0",
     "prettier-config-cityssm": "^1.0.0"
   },
   "dependencies": {
-    "debug": "^4.3.6"
+    "debug": "^4.4.1"
   }
 }
