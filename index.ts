@@ -1,5 +1,6 @@
 import Debug from 'debug'
 
+import { DEBUG_NAMESPACE } from './debug.config.js'
 import type {
   AccessTokenResponse,
   AvantiApiConfiguration,
@@ -19,7 +20,7 @@ import type {
 } from './types.js'
 import { objectToUrlSearchParameters } from './utilities.js'
 
-const debug = Debug('avanti-api')
+const debug = Debug(`${DEBUG_NAMESPACE}:index`)
 
 export const _defaultLatestASSP = false
 
@@ -27,8 +28,8 @@ export class AvantiApi {
   readonly #apiConfiguration: AvantiApiConfiguration
   readonly #accessTokenUrl: string
 
-  #accessTokenTimeMillis = 0
   #accessToken: AccessTokenResponse | undefined
+  #accessTokenTimeMillis = 0
 
   constructor(configuration: AvantiApiConfiguration) {
     this.#apiConfiguration = configuration
@@ -86,6 +87,8 @@ export class AvantiApi {
       debug('Error retrieving access token.')
     }
 
+    debug(`Access Token: ${this.#accessToken.access_token}`)
+
     return this.#accessToken
   }
 
@@ -95,10 +98,10 @@ export class AvantiApi {
    * @param apiOptions - API Options
    * @returns API Response
    */
-  async callApi(
+  async callApi<T>(
     apiEndpoint: AvantiApiEndpoint,
     apiOptions: AvantiApiOptions
-  ): Promise<AvantiApiResponse<unknown>> {
+  ): Promise<AvantiApiResponse<T>> {
     // eslint-disable-next-line @typescript-eslint/naming-convention
     let access_token = this.#accessToken?.access_token ?? ''
 
@@ -159,6 +162,7 @@ export class AvantiApi {
         response: json
       }
     } catch (error) {
+      debug(response)
       parsingError = error as Error
     }
 
@@ -184,8 +188,8 @@ export class AvantiApi {
     parameters: GetEmployeesRequest
   ): Promise<AvantiApiResponse<GetEmployeesResponse>> {
     return (await this.callApi('/v1/Employees', {
-      method: 'post',
-      bodyParameters: parameters
+      bodyParameters: parameters,
+      method: 'post'
     })) as AvantiApiResponse<GetEmployeesResponse>
   }
 
@@ -199,10 +203,10 @@ export class AvantiApi {
     employeeNumber?: string
   ): Promise<AvantiApiResponse<GetEmployeeEarningCodesEarningCode[]>> {
     return (await this.callApi('/v1/EmployeeEarningCodes', {
-      method: 'get',
       getParameters: {
         empNo: employeeNumber
-      }
+      },
+      method: 'get'
     })) as AvantiApiResponse<GetEmployeeEarningCodesEarningCode[]>
   }
 
@@ -216,10 +220,10 @@ export class AvantiApi {
     employeeNumber: string
   ): Promise<AvantiApiResponse<GetEmployeeJobDataResponse>> {
     return (await this.callApi('/v1/EmployeeJobData', {
-      method: 'get',
       getParameters: {
         empNo: employeeNumber
-      }
+      },
+      method: 'get'
     })) as AvantiApiResponse<GetEmployeeJobDataResponse>
   }
 
@@ -233,10 +237,10 @@ export class AvantiApi {
     employeeNumber: string
   ): Promise<AvantiApiResponse<GetEmployeePersonalInfoResponse>> {
     return (await this.callApi('/v1/PersonalInfo', {
-      method: 'get',
       getParameters: {
         empNo: employeeNumber
-      }
+      },
+      method: 'get'
     })) as AvantiApiResponse<GetEmployeePersonalInfoResponse>
   }
 
@@ -254,8 +258,8 @@ export class AvantiApi {
     parameters: GetTimeEntriesRequest
   ): Promise<AvantiApiResponse<GetTimeEntriesTimeEntry[]>> {
     return (await this.callApi(`/v1/TimeManagement/${viewId}/${templateId}`, {
-      method: 'get',
-      getParameters: parameters
+      getParameters: parameters,
+      method: 'get'
     })) as AvantiApiResponse<GetTimeEntriesTimeEntry[]>
   }
 
@@ -269,8 +273,8 @@ export class AvantiApi {
     parameters: GetTimeEntryTemplatesRequest
   ): Promise<AvantiApiResponse<GetTimeEntryTemplatesTimeEntryTemplate[]>> {
     return (await this.callApi('/v1/TimeManagement/Templates', {
-      method: 'get',
-      getParameters: parameters
+      getParameters: parameters,
+      method: 'get'
     })) as AvantiApiResponse<GetTimeEntryTemplatesTimeEntryTemplate[]>
   }
 

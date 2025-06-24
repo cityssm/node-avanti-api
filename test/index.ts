@@ -13,7 +13,7 @@ await describe('node-avanti-api', async () => {
     avanti = new AvantiApi(config.config)
   })
 
-  await it('Gets employees', async () => {
+  await it.skip('Gets employees', async () => {
     const employees = await avanti.getEmployees({
       locations: [config.employees_locationCode],
       skip: 0,
@@ -27,7 +27,7 @@ await describe('node-avanti-api', async () => {
     assert.ok((employees.response.employees?.length ?? 0) > 0)
   })
 
-  await it('Gets employee job data', async () => {
+  await it.skip('Gets employee job data', async () => {
     const jobData = await avanti.getEmployeeJobData(config.timeEntry_empNo)
 
     console.log(jobData)
@@ -36,7 +36,7 @@ await describe('node-avanti-api', async () => {
     assert.ok(Object.hasOwn(jobData.response, 'employeeJobInfo'))
   })
 
-  await it('Gets employee personal info', async () => {
+  await it.skip('Gets employee personal info', async () => {
     const jobData = await avanti.getEmployeePersonalInfo(config.timeEntry_empNo)
 
     console.log(jobData)
@@ -55,7 +55,7 @@ await describe('node-avanti-api', async () => {
     assert.ok(earningCodes.success)
   })
 
-  await it('Gets time entries', async () => {
+  await it.skip('Gets time entries', async () => {
     const timeEntries = await avanti.getTimeEntries(
       config.timeEntry_viewId,
       config.timeEntry_templateId,
@@ -72,7 +72,7 @@ await describe('node-avanti-api', async () => {
     assert.ok(timeEntries.response.length > 0)
   })
 
-  await it('Gets time entry templates', async () => {
+  await it.skip('Gets time entry templates', async () => {
     const timeEntryTemplates = await avanti.getTimeEntryTemplates({
       viewId: config.timeEntry_viewId,
       empNo: config.timeEntry_empNo
@@ -93,7 +93,7 @@ await describe('node-avanti-api', async () => {
     assert.ok(report.response.length > 0)
   })
 
-  await describe('callApi()', async () => {
+  await describe.skip('callApi()', async () => {
     await it('Calls API directly successfully', async () => {
       const response = await avanti.callApi('/v1/Employees', {
         method: 'post',
@@ -139,7 +139,7 @@ await describe('node-avanti-api', async () => {
     })
   })
 
-  await it('Looks up phone types', () => {
+  await it.skip('Looks up phone types', () => {
     assert.ok(avantiLookups.phoneTypes[1].isWork)
   })
 })

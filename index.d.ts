@@ -9,7 +9,7 @@ export declare class AvantiApi {
      * @param apiOptions - API Options
      * @returns API Response
      */
-    callApi(apiEndpoint: AvantiApiEndpoint, apiOptions: AvantiApiOptions): Promise<AvantiApiResponse<unknown>>;
+    callApi<T>(apiEndpoint: AvantiApiEndpoint, apiOptions: AvantiApiOptions): Promise<AvantiApiResponse<T>>;
     /**
      * List Employees:
      * /v1/Employees

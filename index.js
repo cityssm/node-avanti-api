@@ -1,12 +1,13 @@
 import Debug from 'debug';
+import { DEBUG_NAMESPACE } from './debug.config.js';
 import { objectToUrlSearchParameters } from './utilities.js';
-const debug = Debug('avanti-api');
+const debug = Debug(`${DEBUG_NAMESPACE}:index`);
 export const _defaultLatestASSP = false;
 export class AvantiApi {
     #apiConfiguration;
     #accessTokenUrl;
-    #accessTokenTimeMillis = 0;
     #accessToken;
+    #accessTokenTimeMillis = 0;
     constructor(configuration) {
         this.#apiConfiguration = configuration;
         this.#accessTokenUrl =
@@ -47,6 +48,7 @@ export class AvantiApi {
         if ((this.#accessToken?.access_token ?? '') === '') {
             debug('Error retrieving access token.');
         }
+        debug(`Access Token: ${this.#accessToken.access_token}`);
         return this.#accessToken;
     }
     /**
@@ -100,6 +102,7 @@ export class AvantiApi {
             };
         }
         catch (error) {
+            debug(response);
             parsingError = error;
         }
         return {
@@ -121,8 +124,8 @@ export class AvantiApi {
      */
     async getEmployees(parameters) {
         return (await this.callApi('/v1/Employees', {
-            method: 'post',
-            bodyParameters: parameters
+            bodyParameters: parameters,
+            method: 'post'
         }));
     }
     /**
@@ -133,10 +136,10 @@ export class AvantiApi {
      */
     async getEmployeeEarningCodes(employeeNumber) {
         return (await this.callApi('/v1/EmployeeEarningCodes', {
-            method: 'get',
             getParameters: {
                 empNo: employeeNumber
-            }
+            },
+            method: 'get'
         }));
     }
     /**
@@ -147,10 +150,10 @@ export class AvantiApi {
      */
     async getEmployeeJobData(employeeNumber) {
         return (await this.callApi('/v1/EmployeeJobData', {
-            method: 'get',
             getParameters: {
                 empNo: employeeNumber
-            }
+            },
+            method: 'get'
         }));
     }
     /**
@@ -161,10 +164,10 @@ export class AvantiApi {
      */
     async getEmployeePersonalInfo(employeeNumber) {
         return (await this.callApi('/v1/PersonalInfo', {
-            method: 'get',
             getParameters: {
                 empNo: employeeNumber
-            }
+            },
+            method: 'get'
         }));
     }
     /**
@@ -177,8 +180,8 @@ export class AvantiApi {
      */
     async getTimeEntries(viewId, templateId, parameters) {
         return (await this.callApi(`/v1/TimeManagement/${viewId}/${templateId}`, {
-            method: 'get',
-            getParameters: parameters
+            getParameters: parameters,
+            method: 'get'
         }));
     }
     /**
@@ -189,8 +192,8 @@ export class AvantiApi {
      */
     async getTimeEntryTemplates(parameters) {
         return (await this.callApi('/v1/TimeManagement/Templates', {
-            method: 'get',
-            getParameters: parameters
+            getParameters: parameters,
+            method: 'get'
         }));
     }
     /**
