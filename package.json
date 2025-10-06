@@ -26,12 +26,12 @@
     "test": "cross-env NODE_ENV=dev DEBUG=avanti-api node --test"
   },
   "dependencies": {
-    "debug": "^4.4.1"
+    "debug": "^4.4.3"
   },
   "devDependencies": {
     "@types/debug": "^4.1.12",
-    "@types/node": "^24.0.3",
-    "eslint-config-cityssm": "^24.1.0",
+    "@types/node": "^24.7.0",
+    "eslint-config-cityssm": "^31.0.0",
     "prettier-config-cityssm": "^1.0.0"
   },
   "engines": {

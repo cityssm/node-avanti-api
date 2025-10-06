@@ -4,8 +4,8 @@ import { objectToUrlSearchParameters } from './utilities.js';
 const debug = Debug(`${DEBUG_NAMESPACE}:index`);
 export const _defaultLatestASSP = false;
 export class AvantiApi {
-    #apiConfiguration;
     #accessTokenUrl;
+    #apiConfiguration;
     #accessToken;
     #accessTokenTimeMillis = 0;
     constructor(configuration) {
@@ -22,17 +22,16 @@ export class AvantiApi {
     }
     async #refreshAccessToken() {
         this.#accessTokenTimeMillis = Date.now();
-        const requestObject = Object.assign({
-            grant_type: 'password',
+        const requestObject = {
             device_id: this.#apiConfiguration.device_id ??
-                `node-avanti-api-${Date.now().toString()}`
-        }, {
+                `node-avanti-api-${Date.now().toString()}`,
+            grant_type: 'password',
             client_id: this.#apiConfiguration.client_id,
             client_secret: this.#apiConfiguration.client_secret,
             username: this.#apiConfiguration.username,
             password: this.#apiConfiguration.password,
             company: this.#apiConfiguration.company
-        });
+        };
         const request = objectToUrlSearchParameters(requestObject);
         debug(`Access token request: ${this.#accessTokenUrl}`);
         const response = await fetch(this.#accessTokenUrl, {
@@ -123,10 +122,10 @@ export class AvantiApi {
      * @returns See https://avanti.stoplight.io/docs/avanti-api/62932b8f232fb-list-employees
      */
     async getEmployees(parameters) {
-        return (await this.callApi('/v1/Employees', {
+        return await this.callApi('/v1/Employees', {
             bodyParameters: parameters,
             method: 'post'
-        }));
+        });
     }
     /**
      * List Employee Earning Codes:
@@ -135,12 +134,12 @@ export class AvantiApi {
      * @returns See https://avanti.stoplight.io/docs/avanti-api/204d3078d2230-list-employee-earning-codes
      */
     async getEmployeeEarningCodes(employeeNumber) {
-        return (await this.callApi('/v1/EmployeeEarningCodes', {
+        return await this.callApi('/v1/EmployeeEarningCodes', {
             getParameters: {
                 empNo: employeeNumber
             },
             method: 'get'
-        }));
+        });
     }
     /**
      * Get Employee Job Data:
@@ -149,12 +148,12 @@ export class AvantiApi {
      * @returns See https://avanti.stoplight.io/docs/avanti-api/a44b4af6f1abd-get-employee-job-data
      */
     async getEmployeeJobData(employeeNumber) {
-        return (await this.callApi('/v1/EmployeeJobData', {
+        return await this.callApi('/v1/EmployeeJobData', {
             getParameters: {
                 empNo: employeeNumber
             },
             method: 'get'
-        }));
+        });
     }
     /**
      * Get Employee Personal Info:
@@ -163,12 +162,12 @@ export class AvantiApi {
      * @returns See https://avanti.stoplight.io/docs/avanti-api/f851b988b5cf6-get-employee-personal-info
      */
     async getEmployeePersonalInfo(employeeNumber) {
-        return (await this.callApi('/v1/PersonalInfo', {
+        return await this.callApi('/v1/PersonalInfo', {
             getParameters: {
                 empNo: employeeNumber
             },
             method: 'get'
-        }));
+        });
     }
     /**
      * List Time Entries:
@@ -179,10 +178,10 @@ export class AvantiApi {
      * @returns See https://avanti.stoplight.io/docs/avanti-api/4952dd2917595-list-time-entries
      */
     async getTimeEntries(viewId, templateId, parameters) {
-        return (await this.callApi(`/v1/TimeManagement/${viewId}/${templateId}`, {
+        return await this.callApi(`/v1/TimeManagement/${viewId}/${templateId}`, {
             getParameters: parameters,
             method: 'get'
-        }));
+        });
     }
     /**
      * List Time Entry Templates:
@@ -191,10 +190,10 @@ export class AvantiApi {
      * @returns See https://avanti.stoplight.io/docs/avanti-api/faa0ddb0eb18d-list-time-entry-templates
      */
     async getTimeEntryTemplates(parameters) {
-        return (await this.callApi('/v1/TimeManagement/Templates', {
+        return await this.callApi('/v1/TimeManagement/Templates', {
             getParameters: parameters,
             method: 'get'
-        }));
+        });
     }
     /**
      * Get Report Data:
@@ -203,9 +202,9 @@ export class AvantiApi {
      * @returns See https://avanti.stoplight.io/docs/avanti-api/ed0485a9c98bb-get-report-data
      */
     async getReport(reportId) {
-        return (await this.callApi(`/v1/Reporter/${reportId}`, {
+        return await this.callApi(`/v1/Reporter/${reportId}`, {
             method: 'get'
-        }));
+        });
     }
 }
 export * as lookups from './lookups.js';

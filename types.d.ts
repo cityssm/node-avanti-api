@@ -277,6 +277,8 @@ export interface GetEmployeeJobDataResponse {
         ltdUOM: string;
     }>;
 }
+type GetEmployeePersonalInfoPhoneNumberType = 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 | 10 | 11;
+type GetEmployeePersonalInfoEmailType = 0 | 1 | 2 | 3 | 4 | 5;
 export interface GetEmployeePersonalInfoResponse {
     photoRevision?: number;
     userName?: string;
@@ -299,24 +301,24 @@ export interface GetEmployeePersonalInfoResponse {
     previousSurname?: string;
     sinExpiryDate?: string;
     temporarySin: boolean;
-    phoneType1: 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 | 10 | 11;
+    phoneType1: GetEmployeePersonalInfoPhoneNumberType;
     phoneNumber1?: string;
-    phoneType2: 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 | 10 | 11;
+    phoneType2: GetEmployeePersonalInfoPhoneNumberType;
     phoneNumber2?: string;
-    phoneType3: 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 | 10 | 11;
+    phoneType3: GetEmployeePersonalInfoPhoneNumberType;
     phoneNumber3?: string;
-    phoneType4: 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 | 10 | 11;
+    phoneType4: GetEmployeePersonalInfoPhoneNumberType;
     phoneNumber4?: string;
     email?: string;
-    emailType1: 0 | 1 | 2 | 3 | 4 | 5;
+    emailType1: GetEmployeePersonalInfoEmailType;
     email1?: string;
-    emailType2: 0 | 1 | 2 | 3 | 4 | 5;
+    emailType2: GetEmployeePersonalInfoEmailType;
     email2?: string;
-    emailType3: 0 | 1 | 2 | 3 | 4 | 5;
+    emailType3: GetEmployeePersonalInfoEmailType;
     email3?: string;
-    emailType4: 0 | 1 | 2 | 3 | 4 | 5;
+    emailType4: GetEmployeePersonalInfoEmailType;
     email4?: string;
-    emailType5: 0 | 1 | 2 | 3 | 4 | 5;
+    emailType5: GetEmployeePersonalInfoEmailType;
     email5?: string;
     otherText1?: string;
     otherText2?: string;
@@ -745,3 +747,4 @@ export interface GetTimeEntryTemplatesTimeEntryTemplate {
         }>;
     }>;
 }
+export {};

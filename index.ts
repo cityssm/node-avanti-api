@@ -25,8 +25,8 @@ const debug = Debug(`${DEBUG_NAMESPACE}:index`)
 export const _defaultLatestASSP = false
 
 export class AvantiApi {
-  readonly #apiConfiguration: AvantiApiConfiguration
   readonly #accessTokenUrl: string
+  readonly #apiConfiguration: AvantiApiConfiguration
 
   #accessToken: AccessTokenResponse | undefined
   #accessTokenTimeMillis = 0
@@ -49,21 +49,18 @@ export class AvantiApi {
   async #refreshAccessToken(): Promise<AccessTokenResponse> {
     this.#accessTokenTimeMillis = Date.now()
 
-    const requestObject = Object.assign(
-      {
-        grant_type: 'password',
-        device_id:
-          this.#apiConfiguration.device_id ??
-          `node-avanti-api-${Date.now().toString()}`
-      },
-      {
-        client_id: this.#apiConfiguration.client_id,
-        client_secret: this.#apiConfiguration.client_secret,
-        username: this.#apiConfiguration.username,
-        password: this.#apiConfiguration.password,
-        company: this.#apiConfiguration.company
-      }
-    )
+    const requestObject = {
+      device_id:
+        this.#apiConfiguration.device_id ??
+        `node-avanti-api-${Date.now().toString()}`,
+      grant_type: 'password',
+
+      client_id: this.#apiConfiguration.client_id,
+      client_secret: this.#apiConfiguration.client_secret,
+      username: this.#apiConfiguration.username,
+      password: this.#apiConfiguration.password,
+      company: this.#apiConfiguration.company
+    }
 
     const request = objectToUrlSearchParameters(
       requestObject as unknown as Record<string, string>
@@ -73,11 +70,13 @@ export class AvantiApi {
 
     const response = await fetch(this.#accessTokenUrl, {
       method: 'post',
+
       headers: {
         Accept: 'application/json',
         'Content-Type': 'application/x-www-form-urlencoded',
         'x-tenant': this.#apiConfiguration.tenant
       },
+
       body: request
     })
 
@@ -187,10 +186,10 @@ export class AvantiApi {
   async getEmployees(
     parameters: GetEmployeesRequest
   ): Promise<AvantiApiResponse<GetEmployeesResponse>> {
-    return (await this.callApi('/v1/Employees', {
+    return await this.callApi('/v1/Employees', {
       bodyParameters: parameters,
       method: 'post'
-    })) as AvantiApiResponse<GetEmployeesResponse>
+    })
   }
 
   /**
@@ -202,12 +201,12 @@ export class AvantiApi {
   async getEmployeeEarningCodes(
     employeeNumber?: string
   ): Promise<AvantiApiResponse<GetEmployeeEarningCodesEarningCode[]>> {
-    return (await this.callApi('/v1/EmployeeEarningCodes', {
+    return await this.callApi('/v1/EmployeeEarningCodes', {
       getParameters: {
         empNo: employeeNumber
       },
       method: 'get'
-    })) as AvantiApiResponse<GetEmployeeEarningCodesEarningCode[]>
+    })
   }
 
   /**
@@ -219,12 +218,12 @@ export class AvantiApi {
   async getEmployeeJobData(
     employeeNumber: string
   ): Promise<AvantiApiResponse<GetEmployeeJobDataResponse>> {
-    return (await this.callApi('/v1/EmployeeJobData', {
+    return await this.callApi('/v1/EmployeeJobData', {
       getParameters: {
         empNo: employeeNumber
       },
       method: 'get'
-    })) as AvantiApiResponse<GetEmployeeJobDataResponse>
+    })
   }
 
   /**
@@ -236,12 +235,12 @@ export class AvantiApi {
   async getEmployeePersonalInfo(
     employeeNumber: string
   ): Promise<AvantiApiResponse<GetEmployeePersonalInfoResponse>> {
-    return (await this.callApi('/v1/PersonalInfo', {
+    return await this.callApi('/v1/PersonalInfo', {
       getParameters: {
         empNo: employeeNumber
       },
       method: 'get'
-    })) as AvantiApiResponse<GetEmployeePersonalInfoResponse>
+    })
   }
 
   /**
@@ -257,10 +256,10 @@ export class AvantiApi {
     templateId: string,
     parameters: GetTimeEntriesRequest
   ): Promise<AvantiApiResponse<GetTimeEntriesTimeEntry[]>> {
-    return (await this.callApi(`/v1/TimeManagement/${viewId}/${templateId}`, {
+    return await this.callApi(`/v1/TimeManagement/${viewId}/${templateId}`, {
       getParameters: parameters,
       method: 'get'
-    })) as AvantiApiResponse<GetTimeEntriesTimeEntry[]>
+    })
   }
 
   /**
@@ -272,10 +271,10 @@ export class AvantiApi {
   async getTimeEntryTemplates(
     parameters: GetTimeEntryTemplatesRequest
   ): Promise<AvantiApiResponse<GetTimeEntryTemplatesTimeEntryTemplate[]>> {
-    return (await this.callApi('/v1/TimeManagement/Templates', {
+    return await this.callApi('/v1/TimeManagement/Templates', {
       getParameters: parameters,
       method: 'get'
-    })) as AvantiApiResponse<GetTimeEntryTemplatesTimeEntryTemplate[]>
+    })
   }
 
   /**
@@ -285,9 +284,9 @@ export class AvantiApi {
    * @returns See https://avanti.stoplight.io/docs/avanti-api/ed0485a9c98bb-get-report-data
    */
   async getReport(reportId: string): Promise<AvantiApiResponse<object[]>> {
-    return (await this.callApi(`/v1/Reporter/${reportId}`, {
+    return await this.callApi(`/v1/Reporter/${reportId}`, {
       method: 'get'
-    })) as AvantiApiResponse<object[]>
+    })
   }
 }
 
