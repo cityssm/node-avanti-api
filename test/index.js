@@ -1,7 +1,12 @@
+// eslint-disable-next-line @eslint-community/eslint-comments/disable-enable-pair
+/* eslint-disable no-console */
 import assert from 'node:assert';
 import { before, describe, it } from 'node:test';
+import Debug from 'debug';
+import { DEBUG_ENABLE_NAMESPACES } from '../debug.config.js';
 import { AvantiApi, lookups as avantiLookups } from '../index.js';
 import * as config from './config.js';
+Debug.enable(DEBUG_ENABLE_NAMESPACES);
 await describe('node-avanti-api', async () => {
     // eslint-disable-next-line @typescript-eslint/init-declarations
     let avanti;
@@ -84,7 +89,7 @@ await describe('node-avanti-api', async () => {
             });
             console.log(response);
             assert.strictEqual(response.success, false);
-            assert(response.error.status !== undefined);
+            assert.ok(response.error.status !== undefined);
             assert.ok(response.error.status >= 400);
             assert.ok(response.error.status < 500);
         });
@@ -94,7 +99,7 @@ await describe('node-avanti-api', async () => {
             });
             console.log(response);
             assert.strictEqual(response.success, false);
-            assert(response.error.status !== undefined);
+            assert.ok(response.error.status !== undefined);
             assert.ok(response.error.status >= 600);
             assert.ok(response.error.status < 700);
         });

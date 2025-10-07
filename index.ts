@@ -22,7 +22,7 @@ import { objectToUrlSearchParameters } from './utilities.js'
 
 const debug = Debug(`${DEBUG_NAMESPACE}:index`)
 
-export const _defaultLatestASSP = false
+export const _defaultLatestASSP = true
 
 export class AvantiApi {
   readonly #accessTokenUrl: string

@@ -2,7 +2,7 @@ import Debug from 'debug';
 import { DEBUG_NAMESPACE } from './debug.config.js';
 import { objectToUrlSearchParameters } from './utilities.js';
 const debug = Debug(`${DEBUG_NAMESPACE}:index`);
-export const _defaultLatestASSP = false;
+export const _defaultLatestASSP = true;
 export class AvantiApi {
     #accessTokenUrl;
     #apiConfiguration;
