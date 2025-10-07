@@ -19,7 +19,7 @@
   "type": "module",
   "exports": {
     ".": "./index.js",
-    "./debug.js": "./debug.config.js"
+    "./debug": "./debug.config.js"
   },
   "scripts": {
     "coverage": "c8 --reporter=lcov --reporter=text --reporter=text-summary node --test",
