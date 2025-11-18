@@ -21,7 +21,7 @@ await describe('node-avanti-api', async () => {
     avanti = new AvantiApi(config.config)
   })
 
-  await it.skip('Gets employees', async () => {
+  await it('Gets employees', async () => {
     const employees = await avanti.getEmployees({
       locations: [config.employees_locationCode],
       skip: 0,
@@ -92,7 +92,7 @@ await describe('node-avanti-api', async () => {
     assert.ok(timeEntryTemplates.response.length > 0)
   })
 
-  await it('Gets report', async () => {
+  await it.skip('Gets report', async () => {
     const report = await avanti.getReport(config.reporter_reportId)
 
     console.log(report)

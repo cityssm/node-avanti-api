@@ -28,7 +28,7 @@ export interface AvantiApiConfiguration {
 }
 export type AvantiApiOptions = {
     method: 'get';
-    getParameters?: Record<string, string | number | boolean | undefined>;
+    getParameters?: Record<string, boolean | number | string | undefined>;
 } | {
     method: 'post';
     bodyParameters?: object;

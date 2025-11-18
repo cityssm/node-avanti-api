@@ -1,3 +1,6 @@
+// eslint-disable-next-line @eslint-community/eslint-comments/disable-enable-pair
+/* eslint-disable max-lines */
+
 export interface AvantiApiConfiguration {
   /**
    * https://[tenant].myavanti.ca/
@@ -37,7 +40,7 @@ export interface AvantiApiConfiguration {
 export type AvantiApiOptions =
   | {
       method: 'get'
-      getParameters?: Record<string, string | number | boolean | undefined>
+      getParameters?: Record<string, boolean | number | string | undefined>
     }
   | {
       method: 'post'

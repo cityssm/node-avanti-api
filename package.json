@@ -1,6 +1,6 @@
 {
   "name": "@cityssm/avanti-api",
-  "version": "1.0.0-beta.4",
+  "version": "1.0.0-beta.5",
   "description": "An unofficial wrapper around the Avanti API.",
   "keywords": [
     "avanti",
@@ -19,7 +19,8 @@
   "type": "module",
   "exports": {
     ".": "./index.js",
-    "./debug": "./debug.config.js"
+    "./debug": "./debug.config.js",
+    "./types.js": "./types.js"
   },
   "scripts": {
     "coverage": "c8 --reporter=lcov --reporter=text --reporter=text-summary node --test",
@@ -30,8 +31,8 @@
   },
   "devDependencies": {
     "@types/debug": "^4.1.12",
-    "@types/node": "^24.7.0",
-    "eslint-config-cityssm": "^31.1.0",
+    "@types/node": "^24.10.1",
+    "eslint-config-cityssm": "^34.1.0",
     "prettier-config-cityssm": "^1.0.0"
   },
   "engines": {
