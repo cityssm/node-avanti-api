@@ -42,11 +42,11 @@ export interface AvantiApiError {
     error?: Error;
 }
 export type AvantiApiResponse<T> = {
-    success: true;
-    response: T;
-} | {
     success: false;
     error: AvantiApiError;
+} | {
+    success: true;
+    response: T;
 };
 export interface AccessTokenResponse {
     access_token: string;
@@ -86,11 +86,20 @@ export interface GetEmployeesEmployee {
     surname?: string;
     preferredName?: string;
     initial?: string;
+    primaryPositionCode?: string;
     positionName?: string;
     positionNameFr?: string;
-    photoRevision?: number;
     active: boolean;
     email?: string;
+    payGroupCode?: string;
+    payGroupDesc?: string;
+    locationCode?: string;
+    locationDesc?: string;
+    employStatusCode?: string;
+    employStatusDesc?: string;
+    jobStatusCode?: string;
+    jobStatusDesc?: string;
+    fte?: number;
 }
 export interface GetEmployeeEarningCodesEarningCode {
     text?: string;

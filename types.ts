@@ -58,12 +58,12 @@ export interface AvantiApiError {
 
 export type AvantiApiResponse<T> =
   | {
-      success: true
-      response: T
-    }
-  | {
       success: false
       error: AvantiApiError
+    }
+  | {
+      success: true
+      response: T
     }
 
 export interface AccessTokenResponse {
@@ -108,15 +108,33 @@ export interface GetEmployeesResponse {
 
 export interface GetEmployeesEmployee {
   empNo?: string
+
   givenName?: string
   surname?: string
   preferredName?: string
   initial?: string
+
+  primaryPositionCode?: string
+
   positionName?: string
   positionNameFr?: string
-  photoRevision?: number
+
   active: boolean
   email?: string
+
+  payGroupCode?: string
+  payGroupDesc?: string
+
+  locationCode?: string
+  locationDesc?: string
+
+  employStatusCode?: string
+  employStatusDesc?: string
+
+  jobStatusCode?: string
+  jobStatusDesc?: string
+
+  fte?: number
 }
 
 export interface GetEmployeeEarningCodesEarningCode {

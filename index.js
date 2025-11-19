@@ -28,8 +28,8 @@ export class AvantiApi {
             grant_type: 'password',
             client_id: this.#apiConfiguration.client_id,
             client_secret: this.#apiConfiguration.client_secret,
-            username: this.#apiConfiguration.username,
             password: this.#apiConfiguration.password,
+            username: this.#apiConfiguration.username,
             company: this.#apiConfiguration.company
         };
         const request = objectToUrlSearchParameters(requestObject);
@@ -44,6 +44,7 @@ export class AvantiApi {
             body: request
         });
         this.#accessToken = (await response.json());
+        // eslint-disable-next-line @typescript-eslint/no-unnecessary-condition
         if ((this.#accessToken?.access_token ?? '') === '') {
             debug('Error retrieving access token.');
         }
@@ -107,8 +108,9 @@ export class AvantiApi {
         return {
             success: false,
             error: {
-                title: 'callApi() error',
                 status: 600,
+                title: 'callApi() error',
+                // eslint-disable-next-line @typescript-eslint/no-unnecessary-condition
                 detail: parsingError === undefined ? undefined : parsingError.name,
                 error: parsingError,
                 instance: apiEndpoint
@@ -116,10 +118,10 @@ export class AvantiApi {
         };
     }
     /**
-     * List Employees:
+     * List Employees (Undocumented):
      * /v1/Employees
      * @param parameters - Request parameters
-     * @returns See https://avanti.stoplight.io/docs/avanti-api/62932b8f232fb-list-employees
+     * @returns A list of employees.
      */
     async getEmployees(parameters) {
         return await this.callApi('/v1/Employees', {
@@ -131,7 +133,7 @@ export class AvantiApi {
      * List Employee Earning Codes:
      * /v1/EmployeeEarningCodes
      * @param employeeNumber - Employee number
-     * @returns See https://avanti.stoplight.io/docs/avanti-api/204d3078d2230-list-employee-earning-codes
+     * @returns See https://help.avanti.ca/apidocs/list-employee-earning-codes-1
      */
     async getEmployeeEarningCodes(employeeNumber) {
         return await this.callApi('/v1/EmployeeEarningCodes', {
@@ -145,7 +147,7 @@ export class AvantiApi {
      * Get Employee Job Data:
      * /v1/EmployeeJobData
      * @param employeeNumber - Employee number
-     * @returns See https://avanti.stoplight.io/docs/avanti-api/a44b4af6f1abd-get-employee-job-data
+     * @returns See https://help.avanti.ca/apidocs/get-employee-job-data-1
      */
     async getEmployeeJobData(employeeNumber) {
         return await this.callApi('/v1/EmployeeJobData', {
@@ -159,7 +161,7 @@ export class AvantiApi {
      * Get Employee Personal Info:
      * /v1/PersonalInfo
      * @param employeeNumber - Employee number
-     * @returns See https://avanti.stoplight.io/docs/avanti-api/f851b988b5cf6-get-employee-personal-info
+     * @returns See https://help.avanti.ca/apidocs/get-employee-personal-info-1
      */
     async getEmployeePersonalInfo(employeeNumber) {
         return await this.callApi('/v1/PersonalInfo', {
@@ -175,7 +177,7 @@ export class AvantiApi {
      * @param viewId - View Id
      * @param templateId - Template Id
      * @param parameters - Request parameters
-     * @returns See https://avanti.stoplight.io/docs/avanti-api/4952dd2917595-list-time-entries
+     * @returns See https://help.avanti.ca/apidocs/list-time-entries-1
      */
     async getTimeEntries(viewId, templateId, parameters) {
         return await this.callApi(`/v1/TimeManagement/${viewId}/${templateId}`, {
@@ -187,7 +189,7 @@ export class AvantiApi {
      * List Time Entry Templates:
      * /v1/TimeManagement/Templates
      * @param parameters - Request parameters
-     * @returns See https://avanti.stoplight.io/docs/avanti-api/faa0ddb0eb18d-list-time-entry-templates
+     * @returns See https://help.avanti.ca/apidocs/list-schedule-time-entry-templates
      */
     async getTimeEntryTemplates(parameters) {
         return await this.callApi('/v1/TimeManagement/Templates', {
@@ -199,7 +201,7 @@ export class AvantiApi {
      * Get Report Data:
      * /v1/Reporter/{reportId}
      * @param reportId - The ID of the report you would like to get the data for.
-     * @returns See https://avanti.stoplight.io/docs/avanti-api/ed0485a9c98bb-get-report-data
+     * @returns See https://help.avanti.ca/apidocs/get-report-data
      */
     async getReport(reportId) {
         return await this.callApi(`/v1/Reporter/${reportId}`, {
