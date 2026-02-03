@@ -33,7 +33,7 @@
     "@types/debug": "^4.1.12",
     "@types/node": "^24.10.1",
     "eslint-config-cityssm": "^34.1.0",
-    "prettier-config-cityssm": "^1.0.0"
+    "prettier-config-cityssm": "^2.1.0"
   },
   "engines": {
     "node": ">=18.0.0"
